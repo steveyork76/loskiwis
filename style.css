@@ -19,9 +19,8 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
-  font-family: 'Comic Neue', cursive, sans-serif;
+  font-family: 'Comic Neue', sans-serif;
   background: linear-gradient(to bottom, #EFF2E4, #C2A0D9);
   color: var(--oscuro1);
 }
