@@ -47,6 +47,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
+  flex-wrap: wrap;
 }
 .navbar h1 {
   font-size: 2.4rem;
@@ -60,6 +61,7 @@ body {
   list-style: none;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .navbar a {
   text-decoration: none;
@@ -135,12 +137,22 @@ body {
 .slider-buttons button:hover { background: var(--claro4); }
 
 /* Main sections */
-main { padding: 40px 20px; text-align: center; }
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+  text-align: center;
+}
 .about, .artist {
   padding: 30px;
-  margin: 20px auto;
+  margin: 10px auto;
   border-radius: 15px;
-  max-width: 800px;
+  flex: 1 1 45%;
+  max-width: 500px;
   color: white;
 }
 .about { background-color: var(--claro2); }
@@ -194,9 +206,9 @@ footer .footer-content {
 /* Responsive */
 @media (max-width: 768px) {
   .navbar { flex-direction: column; gap: 10px; }
-  .navbar ul { flex-direction: column; gap: 10px; }
+  .navbar ul { flex-direction: row; flex-wrap: wrap; gap: 10px; }
   .slider { width: 95%; height: 300px; }
-  main { padding: 20px 10px; }
+  main { flex-direction: column; padding: 20px 10px; }
   footer .footer-content { flex-direction: column; text-align: center; gap: 10px; }
   .footer-center, .footer-left, .footer-right { order: unset; }
 }
