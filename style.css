@@ -1,19 +1,14 @@
 :root {
-  --claro1: #C2A0D9;
-  --claro2: #84BF04;
-  --claro3: #F2E307;
-  --claro4: #F29B30;
-  --claro5: #D93F07;
-
-  --apagado1: #16B4F2;
-  --apagado2: #6A7372;
-  --apagado3: #EFF2E4;
-
-  --oscuro1: #142601;
-  --oscuro2: #735D43;
-  --oscuro3: #260101;
+  --tono1  : #4F7302;
+  --tono2  : #462207;
+  --tono3  : #EAE8E8;
+  --tono4  : #F2811D;
+  --tono5  : #BF2604;
+  --tono6  : #0D8FA1;
+  --tono7  : #FED246;
 }
 
+/* Reset y tipografía */
 * {
   margin: 0;
   padding: 0;
@@ -21,13 +16,14 @@
 }
 body {
   font-family: 'Comic Neue', sans-serif;
-  background: linear-gradient(to bottom, #EFF2E4, #C2A0D9);
-  color: var(--oscuro1);
+  background: linear-gradient(to bottom, var(--tono3), var(--tono1));
+  color: var(--tono2);
+  font-size: 1.1rem;
 }
 
 /* Topbar */
 .topbar {
-  background: var(--claro2);
+  background: var(--tono6);
   padding: 10px 20px;
   text-align: right;
 }
@@ -37,11 +33,11 @@ body {
   font-size: 18px;
   transition: 0.3s;
 }
-.social-icons a:hover { color: var(--claro4); }
+.social-icons a:hover { color: var(--tono4); }
 
 /* Navbar */
 .navbar {
-  background: var(--claro1);
+  background: var(--tono7);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,11 +45,11 @@ body {
   flex-wrap: wrap;
 }
 .navbar h1 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--oscuro3);
+  color: var(--tono5);
 }
 .logo-kiwi { width: 32px; height: 32px; }
 .navbar ul {
@@ -64,15 +60,15 @@ body {
 }
 .navbar a {
   text-decoration: none;
-  color: var(--oscuro1);
+  color: var(--tono2);
   font-weight: bold;
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   transition: 0.3s;
 }
-.navbar a:hover { color: var(--claro3); }
+.navbar a:hover { color: var(--tono6); }
 
 /* Slider */
 .slider {
@@ -90,7 +86,7 @@ body {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: linear-gradient(120deg, #F2E307 0%, #84BF04 100%);
+  background: linear-gradient(120deg, var(--tono7) 0%, var(--tono1) 100%);
   z-index: 0;
 }
 
@@ -133,7 +129,7 @@ body {
   border-radius: 50%;
   transition: 0.3s;
 }
-.slider-buttons button:hover { background: var(--claro4); }
+.slider-buttons button:hover { background: var(--tono4); }
 
 /* Main sections */
 main {
@@ -152,26 +148,25 @@ main {
   border-radius: 15px;
   flex: 1 1 45%;
   max-width: 500px;
-  color: white;
+  color: var(--tono3);
 }
-.about { background-color: var(--claro2); }
-.artist { background-color: var(--claro4); }
-
+.about { background-color: var(--tono1); }
+.artist { background-color: var(--tono4); }
 .about h2, .artist h2 {
   font-size: 2rem;
   margin-bottom: 15px;
   text-align: center;
 }
 .about p, .artist p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.8;
   text-align: justify;
 }
 
 /* Footer */
 footer {
-  background: var(--oscuro2);
-  color: white;
+  background: var(--tono2);
+  color: var(--tono3);
   padding: 20px 40px;
 }
 footer .footer-content {
@@ -186,26 +181,30 @@ footer .footer-content {
 .footer-center { text-align: center; }
 .footer-nav a {
   margin: 0 10px;
-  color: white; text-decoration: none;
+  color: var(--tono3); text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 5px;
   font-size: 1rem;
   transition: 0.3s;
 }
-.footer-nav a:hover { color: var(--claro3); }
+.footer-nav a:hover { color: var(--tono7); }
 .footer-right .footer-social a {
   margin: 0 5px;
-  color: white;
+  color: var(--tono3);
   font-size: 18px;
   transition: 0.3s;
 }
-.footer-right .footer-social a:hover { color: var(--claro4); }
+.footer-right .footer-social a:hover { color: var(--tono4); }
 
 /* Responsive */
 @media (max-width: 768px) {
+  body { font-size: 1rem; }
   .navbar { flex-direction: column; gap: 10px; }
-  .navbar ul { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+  .navbar h1 { font-size: 1.6rem; }
+  .about h2, .artist h2 { font-size: 1.2rem; }
+  .about p, .artist p { font-size: 0.95rem; }
+  .navbar a { font-size: 1rem; }
   .slider { width: 95%; height: 300px; }
   main { flex-direction: column; padding: 20px 10px; }
   footer .footer-content { flex-direction: column; text-align: center; gap: 10px; }
