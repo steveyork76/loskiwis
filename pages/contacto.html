@@ -2,15 +2,92 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contacto - Los Kiwis</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    html { -webkit-text-size-adjust: 100%; }
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+    .formulario-consultas {
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 0 15px;
+      font-family: 'Comic Neue', sans-serif;
+      color: var(--tono2);
+    }
+    .formulario-consultas h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--tono4);
+    }
+    .formulario-consultas label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .formulario-consultas input[type="text"],
+    .formulario-consultas input[type="email"],
+    .formulario-consultas textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--tono6);
+      background: var(--tono3);
+      color: var(--tono2);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      resize: vertical;
+    }
+    .formulario-consultas button {
+      padding: 12px 0;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      flex: 1;
+    }
+    .formulario-consultas button[type="submit"] {
+      background-color: var(--tono4);
+      color: var(--tono3);
+      margin-right: 1rem;
+    }
+    .formulario-consultas button[type="submit"]:hover {
+      background-color: var(--tono5);
+    }
+    .formulario-consultas button[type="reset"] {
+      background-color: #999;
+      color: #333;
+    }
+    .formulario-consultas button[type="reset"]:hover {
+      background-color: #777;
+    }
+    .formulario-consultas div.button-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .btn-volver {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--tono4);
+      font-weight: bold;
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+    .btn-volver:hover {
+      color: var(--tono5);
+    }
   </style>
 </head>
 <body>
@@ -34,35 +111,54 @@
     </h1>
     <ul>
       <li><a href="../index.html"><i class="fas fa-home"></i> Inicio | </a></li>
-      <li><a href="#"><i class="fas fa-book"></i> Libros | </a></li>
-      <li><a href="#"><i class="fas fa-image"></i> Galería | </a></li>
+      <li><a href="en-construccion.html"><i class="fas fa-book"></i> Libros | </a></li>
+      <li><a href="en-construccion.html"><i class="fas fa-image"></i> Galería | </a></li>
       <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
     </ul>
   </nav>
 
   <main>
-    <section class="about" style="max-width:500px;margin:30px auto;">
-      <h2>Contacto</h2>
-      <p>¿Quieres enviar un mensaje a Los Kiwis o a Carlos Balló? ¡Usa el formulario y te responderemos pronto!</p>
-      <form class="contact-form" style="margin-top:20px;display:flex;flex-direction:column;gap:14px;" 
-            action="mailto:tresgatosnegros@gmail.com" method="post" enctype="text/plain">
-        <input type="text" name="nombre" placeholder="Tu nombre" required 
-          style="padding:10px;border-radius:8px;border:1px solid var(--tono6);background:var(--tono3);color:var(--tono2);">
-        <input type="email" name="email" placeholder="Tu correo" required
-          style="padding:10px;border-radius:8px;border:1px solid var(--tono6);background:var(--tono3);color:var(--tono2);">
-        <textarea name="mensaje" placeholder="Escribe tu mensaje..." required rows="5"
-          style="padding:10px;border-radius:8px;border:1px solid var(--tono6);background:var(--tono3);color:var(--tono2);resize:vertical;"></textarea>
-        <div style="display:flex; gap: 15px; margin-top:8px;">
-          <button type="submit"
-            style="flex:1; background:var(--tono4); color:var(--tono3); padding:12px 0; border:none; border-radius:8px; cursor:pointer; font-size:1.1rem; font-weight:bold; transition:0.3s;">
-            <i class="fas fa-paper-plane"></i> Enviar
-          </button>
-          <button type="reset"
-            style="flex:1; background:#ccc; color:#333; padding:12px 0; border:none; border-radius:8px; cursor:pointer; font-size:1.1rem; font-weight:bold; transition:0.3s;">
-            <i class="fas fa-eraser"></i> Limpiar
-          </button>
-        </div>
-      </form>
+    <section class="formulario-consultas">
+      <h1>Formulario de Consultas</h1>
+     <form action="https://formsubmit.co/tresgatosnegros@gmail.com" method="POST" accept-charset="UTF-8">
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="email">Correo electrónico:</label>
+  <input type="email" id="email" name="email" required />
+
+  <label for="message">Mensaje:</label>
+  <textarea id="message" name="message" rows="5" required placeholder="Escribe tu consulta aquí..."></textarea>
+
+  <!-- Redirección tras envío (usa una página que exista) -->
+  <input type="hidden" name="_next" value="https://www.loskiwis.cl/gracias.html">
+
+  <!-- Asunto del correo -->
+  <input type="hidden" name="_subject" value="Nuevo mensaje desde Los Kiwis">
+
+  <!-- Plantilla bonita en la entrega -->
+  <input type="hidden" name="_template" value="table">
+
+  <!-- Respuesta automática opcional -->
+  <input type="hidden" name="_autoresponse" value="¡Gracias por escribirnos! Te responderemos a la brevedad.">
+
+  <!-- Desactivar captcha (si usas honeypot) -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- Honeypot antispam (no mostrar) -->
+  <input type="text" name="_honey" style="display:none">
+
+  <div class="button-group">
+    <button type="submit">Enviar</button>
+    <button type="reset">Limpiar</button>
+  </div>
+</form>
+
+      <p style="text-align: center;">
+        <a href="../index.html" class="btn-volver">
+          <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+        </a>
+      </p>
     </section>
   </main>
 
