@@ -209,7 +209,7 @@ footer .footer-content {
   .footer-center, .footer-left, .footer-right { order: unset; }
 }
 
-/* Galería con recuadros e imágenes ajustadas */
+/* Galería simple de recuadros */
 .galeria {
   display: flex;
   flex-wrap: wrap;
@@ -217,7 +217,6 @@ footer .footer-content {
   gap: 10px;
   padding: 1rem;
 }
-
 .recuadro {
   width: 200px;
   height: 200px;
@@ -228,12 +227,10 @@ footer .footer-content {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
-
 .recuadro:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
-
 .recuadro img {
   width: 100%;
   height: 100%;
@@ -241,42 +238,13 @@ footer .footer-content {
   display: block;
 }
 
-/* Estilos para la galería de libros con leyenda */
-.gallery-item {
-  width: 250px;
-  height: 380px;
+/* Galería de libros con ajuste para iPhone/Safari */
+.gallery {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  max-height: 250px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-
-.leyenda {
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 10px;
-  background-color: rgba(255,255,255,0.8);
-  padding: 8px;
-  border-radius: 8px;
-  width: 100%;
-  color: var(--tono2);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  font-weight: 600;
-}
-
-/* Botón comprar de WhatsApp (revisar que ya exista en el CSS base) */
-
-.gallery-item a.buy-link:hover {
-  background-color: #1ebe57;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem 0;
 }
 .gallery-item {
   width: 250px;
@@ -286,17 +254,25 @@ footer .footer-content {
   align-items: center;
   padding: 10px;
   box-sizing: border-box;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
 }
-
-.gallery-item img {
+.gallery-imgbox {
   width: 100%;
-  height: auto;
-  max-height: 250px;
-  object-fit: contain;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   margin-bottom: 10px;
-  flex-shrink: 0;
 }
-
+.gallery-imgbox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 .leyenda {
   font-size: 1rem;
   text-align: center;
@@ -310,8 +286,6 @@ footer .footer-content {
   font-weight: 600;
   flex-shrink: 0;
 }
-
-/* El margen superior automático fuerza el botón al fondo */
 .gallery-item a.buy-link {
   margin-top: auto;
   display: block;
@@ -324,4 +298,6 @@ footer .footer-content {
   text-align: center;
   transition: background-color 0.3s ease;
 }
-
+.gallery-item a.buy-link:hover {
+  background-color: #1ebe57;
+}
