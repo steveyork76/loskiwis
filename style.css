@@ -81,7 +81,6 @@ body {
   border-radius: 15px;
   box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
 }
-
 .slider-bg {
   position: absolute;
   top: 0; left: 0;
@@ -89,7 +88,6 @@ body {
   background: linear-gradient(120deg, var(--tono7) 0%, var(--tono1) 100%);
   z-index: 0;
 }
-
 .slides {
   position: relative;
   width: 100%; height: 100%;
@@ -210,3 +208,120 @@ footer .footer-content {
   footer .footer-content { flex-direction: column; text-align: center; gap: 10px; }
   .footer-center, .footer-left, .footer-right { order: unset; }
 }
+
+/* Galería con recuadros e imágenes ajustadas */
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 1rem;
+}
+
+.recuadro {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.recuadro:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.recuadro img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Estilos para la galería de libros con leyenda */
+.gallery-item {
+  width: 250px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.leyenda {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 10px;
+  background-color: rgba(255,255,255,0.8);
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
+  color: var(--tono2);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-weight: 600;
+}
+
+/* Botón comprar de WhatsApp (revisar que ya exista en el CSS base) */
+
+.gallery-item a.buy-link:hover {
+  background-color: #1ebe57;
+}
+.gallery-item {
+  width: 250px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.leyenda {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 10px;
+  background-color: rgba(255,255,255,0.8);
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
+  color: var(--tono2);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* El margen superior automático fuerza el botón al fondo */
+.gallery-item a.buy-link {
+  margin-top: auto;
+  display: block;
+  padding: 0.5rem;
+  background-color: #25d366; 
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
