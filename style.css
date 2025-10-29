@@ -301,3 +301,11 @@ footer .footer-content {
 .gallery-item a.buy-link:hover {
   background-color: #1ebe57;
 }
+.buy-link.disabled {
+  background-color: #bbb;
+  color: #f7f7f7;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  text-decoration: none;
+}
