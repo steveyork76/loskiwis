@@ -6,30 +6,34 @@
   <title>🐦 Los Kiwis by Carlos Balló - Galería</title>
 
   <!-- SEO -->
-  <meta name="description" content="[translate:Galería de imágenes de Los Kiwis]" />
+  <meta name="description" content="Galería oficial de ilustraciones Los Kiwis del artista Carlos Balló." />
 
-  <!-- Preload Google Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Estilos -->
+  <!-- CSS global -->
   <link rel="stylesheet" href="../style.css" />
 
-  <!-- Iconos Font Awesome -->
+  <!-- CSS exclusivo de la galería -->
+  <link rel="stylesheet" href="../galeria.css" />
+
+  <!-- Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <!-- Barra superior con redes -->
+
+  <!-- Topbar -->
   <header class="topbar">
     <div class="social-icons">
-      <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-      <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-      <a href="https://wa.me/56972850858" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+      <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/56972850858" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
     </div>
   </header>
 
-  <!-- Encabezado -->
+  <!-- Navbar -->
   <nav class="navbar">
     <h1>
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64" fill="currentColor" class="logo-kiwi">
@@ -48,33 +52,29 @@
     </ul>
   </nav>
 
-  <!-- Sección de galería de imágenes -->
+  <!-- GALERÍA -->
   <main>
-    <section class="galeria">
-      <div class="recuadro"><img src="../img/galeria1.jpg" alt="Galería 1" /></div>
-      <div class="recuadro"><img src="../img/galeria2.jpg" alt="Galería 2" /></div>
-      <div class="recuadro"><img src="../img/galeria3.jpg" alt="Galería 3" /></div>
-      <div class="recuadro"><img src="../img/galeria4.jpg" alt="Galería 4" /></div>
-      <div class="recuadro"><img src="../img/galeria5.jpg" alt="Galería 5" /></div>
-      <div class="recuadro"><img src="../img/galeria6.jpg" alt="Galería 6" /></div>
-      <div class="recuadro"><img src="../img/galeria7.jpg" alt="Galería 7" /></div>
-      <div class="recuadro"><img src="../img/galeria8.jpg" alt="Galería 8" /></div>
-      <div class="recuadro"><img src="../img/galeria9.jpg" alt="Galería 9" /></div>
-      <div class="recuadro"><img src="../img/galeria10.jpg" alt="Galería 10" /></div>
-      <div class="recuadro"><img src="../img/galeria11.jpg" alt="Galería 11" /></div>
-      <div class="recuadro"><img src="../img/galeria12.jpg" alt="Galería 12" /></div>
-      <div class="recuadro"><img src="../img/galeria13.jpg" alt="Galería 13" /></div>
-      <div class="recuadro"><img src="../img/galeria14.jpg" alt="Galería 14" /></div>
-      <div class="recuadro"><img src="../img/galeria15.jpg" alt="Galería 15" /></div>
-      <div class="recuadro"><img src="../img/galeria16.jpg" alt="Galería 16" /></div>
-      <div class="recuadro"><img src="../img/galeria17.jpg" alt="Galería 17" /></div>
-      <div class="recuadro"><img src="../img/galeria18.jpg" alt="Galería 18" /></div>
-      <div class="recuadro"><img src="../img/galeria19.jpg" alt="Galería 19" /></div>
-      <div class="recuadro"><img src="../img/galeria20.jpg" alt="Galería 20" /></div>
+    <section class="galeria" id="galeria">
+      <!-- BEGIN AUTO -->
+      <!-- END AUTO -->
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- MODAL / LIGHTBOX -->
+  <div class="modal-img" id="modalImg">
+    <span class="modal-close" id="closeModal">&times;</span>
+
+    <!-- Marca de agua: patrón + título -->
+    <div class="modal-watermark-pattern"></div>
+    <div class="modal-watermark">ARTISTA CARLOS BALLO</div>
+
+    <!-- Viewport para zoom/pan/pinch -->
+    <div class="modal-viewport" id="viewport">
+      <img id="modalImgSrc" alt="">
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="footer-left">
@@ -87,13 +87,175 @@
       </div>
       <div class="footer-right">
         <div class="footer-social">
-          <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-          <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/56972850858" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/56972850858" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </div>
   </footer>
+
+<!-- ========================= -->
+<!-- JS: AUTO-GENERAR GRILLA + MODAL con zoom/pan/pinch -->
+<!-- ========================= -->
+<script>
+// ---------- Configuración ----------
+const BASE_PATH = "../img/galeria/galeria"; // prefijo de los archivos
+const EXT = ".jpg";                          // extensión
+const TOTAL = 44;                             // cantidad de imágenes
+
+// ---------- Generar grilla en el cliente ----------
+(function buildGrid(){
+  const galeria = document.getElementById("galeria");
+  const begin = "<!-- BEGIN AUTO -->";
+  const end = "<!-- END AUTO -->";
+
+  // Crea los nodos (evitamos innerHTML grande)
+  const frag = document.createDocumentFragment();
+  for (let i = 1; i <= TOTAL; i++) {
+    const src = `${BASE_PATH}${i}${EXT}`;
+    const item = document.createElement("div");
+    item.className = "recuadro";
+
+    const a = document.createElement("a");
+    a.href = "#";
+    a.className = "zoomImg";
+    a.dataset.img = src;
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = `Galería ${i}`;
+    // Si una imagen no existe, ocultamos el recuadro
+    img.onerror = () => item.style.display = "none";
+
+    a.appendChild(img);
+    item.appendChild(a);
+    frag.appendChild(item);
+  }
+
+  galeria.appendChild(frag);
+})();
+
+// ---------- Modal / Zoom / Pan / Pinch ----------
+const modal = document.getElementById("modalImg");
+const modalImg = document.getElementById("modalImgSrc");
+const viewport = document.getElementById("viewport");
+const closeBtn = document.getElementById("closeModal");
+
+// Delegación de eventos: abrir modal al hacer click en cualquier .zoomImg
+document.getElementById("galeria").addEventListener("click", (e) => {
+  const a = e.target.closest("a.zoomImg");
+  if (!a) return;
+  e.preventDefault();
+  modal.style.display = "flex";
+  modalImg.src = a.dataset.img;
+  // reset transform
+  scale = 1; pos = { x: 0, y: 0 }; applyTransform();
+});
+
+// Cerrar modal
+closeBtn.onclick = () => closeModal();
+modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+function closeModal() { modal.style.display = "none"; }
+
+// Estado de transformaciones
+let scale = 1, minScale = 1, maxScale = 4;
+let pos = { x: 0, y: 0 };
+let isPanning = false;
+let start = { x: 0, y: 0 };
+let startPos = { x: 0, y: 0 };
+
+function applyTransform() {
+  modalImg.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(${scale})`;
+  modalImg.style.transformOrigin = "0 0";
+}
+
+// Zoom con rueda (centrado en cursor)
+viewport.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
+
+  const factor = e.deltaY > 0 ? 0.9 : 1.1;
+  const newScale = Math.min(maxScale, Math.max(minScale, scale * factor));
+  if (newScale === scale) return;
+
+  pos.x = mouseX - (mouseX - pos.x) * (newScale / scale);
+  pos.y = mouseY - (mouseY - pos.y) * (newScale / scale);
+
+  scale = newScale;
+  applyTransform();
+}, { passive: false });
+
+// Pan con mouse
+viewport.addEventListener("mousedown", (e) => {
+  isPanning = true;
+  viewport.classList.add("grabbing");
+  start = { x: e.clientX, y: e.clientY };
+  startPos = { ...pos };
+});
+window.addEventListener("mousemove", (e) => {
+  if (!isPanning) return;
+  pos = { x: startPos.x + (e.clientX - start.x), y: startPos.y + (e.clientY - start.y) };
+  applyTransform();
+});
+window.addEventListener("mouseup", () => {
+  isPanning = false;
+  viewport.classList.remove("grabbing");
+});
+
+// Táctil: pan con 1 dedo, pinch con 2
+let touchMode = null; // 'pan' | 'pinch'
+let pinchStartDist = 0;
+let pinchStartScale = 1;
+let pinchCenter = { x: 0, y: 0 };
+let panStart = { x: 0, y: 0 };
+
+viewport.addEventListener("touchstart", (e) => {
+  if (e.touches.length === 1) {
+    touchMode = 'pan';
+    panStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    startPos = { ...pos };
+  } else if (e.touches.length === 2) {
+    touchMode = 'pinch';
+    const t1 = e.touches[0], t2 = e.touches[1];
+    pinchStartDist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+    pinchStartScale = scale;
+
+    const rect = viewport.getBoundingClientRect();
+    pinchCenter = {
+      x: ((t1.clientX + t2.clientX) / 2) - rect.left,
+      y: ((t1.clientY + t2.clientY) / 2) - rect.top
+    };
+  }
+}, { passive: false });
+
+viewport.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  if (touchMode === 'pan' && e.touches.length === 1) {
+    const dx = e.touches[0].clientX - panStart.x;
+    const dy = e.touches[0].clientY - panStart.y;
+    pos = { x: startPos.x + dx, y: startPos.y + dy };
+    applyTransform();
+  } else if (touchMode === 'pinch' && e.touches.length === 2) {
+    const t1 = e.touches[0], t2 = e.touches[1];
+    const dist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+    const newScale = Math.min(maxScale, Math.max(minScale, pinchStartScale * (dist / pinchStartDist)));
+
+    pos.x = pinchCenter.x - (pinchCenter.x - pos.x) * (newScale / scale);
+    pos.y = pinchCenter.y - (pinchCenter.y - pos.y) * (newScale / scale);
+
+    scale = newScale;
+    applyTransform();
+  }
+}, { passive: false });
+
+window.addEventListener("touchend", () => { touchMode = null; });
+
+// Evita arrastrar la imagen por defecto
+modalImg.addEventListener('dragstart', e => e.preventDefault());
+</script>
+
 </body>
 </html>
-
