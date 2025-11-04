@@ -23,6 +23,51 @@
     html {
       -webkit-text-size-adjust: 100%;
     }
+    
+    .divider {
+      border: 0;
+      height: 2px;
+      background: #4F7302;
+      margin: 40px auto 20px auto;
+      width: 80%;
+      max-width: 1200px;
+    }
+    
+    .section-title {
+      text-align: center;
+      color: #4F7302;
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+    
+    .otros-libros {
+      overflow: hidden; /* Clear floats */
+    }
+    
+    .otros-libros .gallery-item {
+      width: 22%;
+      margin: 0 1.5% 40px 1.5%;
+      float: left;
+    }
+    
+    /* Adapta a móviles */
+    @media (max-width: 768px) {
+      .otros-libros .gallery-item {
+        width: 48%;
+        margin: 0 1% 30px 1%;
+        float: left;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .otros-libros .gallery-item {
+        width: 100%;
+        margin: 0 0 20px 0;
+        float: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -90,6 +135,68 @@
           Stock: No disponible
         </div>
         <a href="#" class="buy-link disabled" tabindex="-1">
+          <i class="fab fa-whatsapp"></i> Comprar
+        </a>
+      </div>
+    </section>
+
+    <!-- Línea divisoria con título "Otros libros" -->
+    <hr class="divider" />
+    <h2 class="section-title">Otros libros</h2>
+
+    <section class="gallery otros-libros">
+      <!-- Libro 4 -->
+      <div class="gallery-item">
+        <div class="gallery-imgbox">
+          <img src="../img/libros/clodomiro_book.png" alt="Clodomiro"/>
+        </div>
+        <div class="leyenda">
+          Precio: $4.000 CLP<br />
+          Stock: Disponible
+        </div>
+        <a href="https://wa.me/56972850858?text=Hola,%20quiero%20comprar%20el%20Libro%204" target="_blank" rel="noopener noreferrer" class="buy-link">
+          <i class="fab fa-whatsapp"></i> Comprar
+        </a>
+      </div>
+
+      <!-- Libro 5 -->
+      <div class="gallery-item">
+        <div class="gallery-imgbox">
+          <img src="../img/libros/clodomiro2_book.png" alt="Clodomiro2"/>
+        </div>
+        <div class="leyenda">
+          Precio: $10.000 CLP<br />
+          Stock: Disponible
+        </div>
+        <a href="https://wa.me/56972850858?text=Hola,%20quiero%20comprar%20el%20Libro%205" target="_blank" rel="noopener noreferrer" class="buy-link">
+          <i class="fab fa-whatsapp"></i> Comprar
+        </a>
+      </div>
+
+      <!-- Libro 6 -->
+      <div class="gallery-item">
+        <div class="gallery-imgbox">
+          <img src="../img/libros/chupacabras.png" alt="Chupacabras"/>
+        </div>
+        <div class="leyenda">
+          Precio: $4.000 CLP<br />
+          Stock: Disponible
+        </div>
+        <a href="https://wa.me/56972850858?text=Hola,%20quiero%20comprar%20el%20Libro%206" target="_blank" rel="noopener noreferrer" class="buy-link">
+          <i class="fab fa-whatsapp"></i> Comprar
+        </a>
+      </div>
+
+      <!-- Libro 7 -->
+      <div class="gallery-item">
+        <div class="gallery-imgbox">
+          <img src="../img/libros/les_kiwis.png" alt="Les Kiwis"/>
+        </div>
+        <div class="leyenda">
+          Precio: $10.000 CLP<br />
+          Stock: Disponible
+        </div>
+        <a href="https://wa.me/56972850858?text=Hola,%20quiero%20comprar%20el%20Libro%207" target="_blank" rel="noopener noreferrer" class="buy-link">
           <i class="fab fa-whatsapp"></i> Comprar
         </a>
       </div>
