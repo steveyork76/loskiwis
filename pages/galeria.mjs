@@ -4,8 +4,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // === Configura estas rutas según tu estructura ===
-const IMAGES_DIR = '../img/galeria';   // carpeta de imágenes (relativa a este script)
-const GALERIA_HTML = 'galeria.html';   // archivo destino a actualizar
+// Si este script está en /pages/ y tus imágenes en /img/galeria, esto es correcto:
+const IMAGES_DIR = '../img/galeria';   // carpeta de imágenes (relativa a ESTE SCRIPT)
+const GALERIA_HTML = 'galeria.html';   // archivo destino a actualizar (junto a este script)
 const OUTPUT_SNIPPET = 'galeria_items.html'; // opcional: bloque generado
 
 const VALID_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif']);
@@ -18,6 +19,13 @@ function naturalKey(name) {
   return name.toLowerCase().split(/(\d+)/).map(v => (/\d+/.test(v) ? Number(v) : v));
 }
 
+function titleCase(s) {
+  return s.replace(/[-_]/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .replace(/\b\w/g, m => m.toUpperCase());
+}
+
 function buildItems() {
   const dir = path.resolve(__dirname, IMAGES_DIR);
   if (!fs.existsSync(dir)) throw new Error(`No existe la carpeta: ${dir}`);
@@ -27,7 +35,7 @@ function buildItems() {
       const ext = path.extname(f).toLowerCase();
       return VALID_EXTS.has(ext) && fs.lstatSync(path.join(dir, f)).isFile();
     })
-    .sort((a,b) => {
+    .sort((a, b) => {
       const ak = naturalKey(a);
       const bk = naturalKey(b);
       return ak > bk ? 1 : ak < bk ? -1 : 0;
@@ -36,12 +44,12 @@ function buildItems() {
   if (!files.length) throw new Error(`No se encontraron imágenes en: ${dir}`);
 
   const items = files.map(f => {
-    const rel = path.posix.join(IMAGES_DIR, f).replace(/\\/g, '/');
-    const alt = path.parse(f).name.replace(/[-_]/g, ' ');
+    const rel = path.posix.join(IMAGES_DIR, f).replace(/\\/g, '/'); // ruta relativa para HTML
+    const alt = titleCase(path.parse(f).name);
     return [
       '  <div class="recuadro">',
       `    <a href="#" class="zoomImg" data-img="${rel}">`,
-      `      <img src="${rel}" alt="${alt}">`,
+      `      <img src="${rel}" alt="${alt}" loading="lazy">`,
       '    </a>',
       '  </div>'
     ].join('\n');
@@ -66,7 +74,8 @@ function injectIntoGaleria(block) {
   const end = '<!-- END AUTO -->';
 
   if (content.includes(begin) && content.includes(end) && content.indexOf(begin) < content.indexOf(end)) {
-    const re = new RegExp(begin + '[\\s\\S]*?' + end);
+    // Reemplazo entre marcadores
+    const re = new RegExp(`${begin}[\\s\\S]*?${end}`, 'm');
     const newBlock = `${begin}\n${block}${end}`;
     content = content.replace(re, newBlock);
   } else {
