@@ -8,6 +8,7 @@
   --tono7  : #FED246;
 }
 
+
 /* Reset y tipografía */
 * {
   margin: 0;
@@ -20,6 +21,7 @@ body {
   color: var(--tono2);
   font-size: 1.1rem;
 }
+
 
 /* Topbar */
 .topbar {
@@ -34,6 +36,7 @@ body {
   transition: 0.3s;
 }
 .social-icons a:hover { color: var(--tono4); }
+
 
 /* Navbar */
 .navbar {
@@ -69,6 +72,7 @@ body {
   transition: 0.3s;
 }
 .navbar a:hover { color: var(--tono6); }
+
 
 /* Slider */
 .slider {
@@ -108,6 +112,7 @@ body {
   border-radius: 15px;
 }
 
+
 /* Slider buttons */
 .slider-buttons {
   position: absolute;
@@ -128,6 +133,7 @@ body {
   transition: 0.3s;
 }
 .slider-buttons button:hover { background: var(--tono4); }
+
 
 /* Main sections */
 main {
@@ -160,6 +166,7 @@ main {
   line-height: 1.8;
   text-align: justify;
 }
+
 
 /* Footer */
 footer {
@@ -195,6 +202,7 @@ footer .footer-content {
 }
 .footer-right .footer-social a:hover { color: var(--tono4); }
 
+
 /* Responsive */
 @media (max-width: 768px) {
   body { font-size: 1rem; }
@@ -208,6 +216,7 @@ footer .footer-content {
   footer .footer-content { flex-direction: column; text-align: center; gap: 10px; }
   .footer-center, .footer-left, .footer-right { order: unset; }
 }
+
 
 /* Galería simple de recuadros */
 .galeria {
@@ -238,6 +247,7 @@ footer .footer-content {
   display: block;
 }
 
+
 /* Galería de libros con ajuste para iPhone/Safari */
 .gallery {
   display: flex;
@@ -258,21 +268,28 @@ footer .footer-content {
   border-radius: 6px;
   box-shadow: 0 1px 6px rgba(0,0,0,0.07);
 }
+
+/* ✅ Bordes redondeados para las imágenes de libros */
 .gallery-imgbox {
   width: 100%;
   height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: hidden;            /* mantiene el recorte */
   margin-bottom: 10px;
+  border-radius: 20px;         /* <<--- radio de los bordes */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .gallery-imgbox img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
+  border-radius: inherit;      /* hereda el radio del contenedor */
+  transition: transform 0.4s ease;
 }
+
 .leyenda {
   font-size: 1rem;
   text-align: center;
@@ -301,6 +318,14 @@ footer .footer-content {
 .gallery-item a.buy-link:hover {
   background-color: #1ebe57;
 }
+/* Hover: zoom + sombra */
+.gallery-item:hover .gallery-imgbox img {
+  transform: scale(1.08);
+}
+
+.gallery-item:hover .gallery-imgbox {
+  box-shadow: 0px 8px 18px rgba(0,0,0,0.25);
+}
 .buy-link.disabled {
   background-color: #bbb;
   color: #f7f7f7;
@@ -308,4 +333,54 @@ footer .footer-content {
   pointer-events: none;
   opacity: 0.65;
   text-decoration: none;
+}
+
+
+/* Estilo línea divisoria para "Otros libros" */
+.divider {
+  border: 0;
+  height: 2px;
+  background: var(--tono1);
+  margin: 40px auto 20px auto;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.section-title {
+  text-align: center;
+  color: var(--tono1);
+  font-family: 'Comic Neue', cursive, sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+.otros-libros {
+  overflow: hidden; /* Clear floats */
+}
+
+.otros-libros .gallery-item {
+  width: 22%;
+  margin: 0 1.5% 40px 1.5%;
+  float: left;
+}
+
+/* Responsive para otros libros */
+@media (max-width: 768px) {
+  .otros-libros .gallery-item {
+    width: 48%;
+    margin: 0 1% 30px 1%;
+    float: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .otros-libros .gallery-item {
+    width: 100%;
+    margin: 0 0 20px 0;
+    float: none;
+  }
+}
+h2.section-title {
+  clear: both;
 }
