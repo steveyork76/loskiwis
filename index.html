@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐦 Los Kiwis by Carlos Balló - Página Oficial</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Los Kiwis, personajes mágicos creados por Carlos Balló. Descubre sus libros, ilustraciones y aventuras." />
+
+  <!-- Preload Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="index.css" />
+
+  <!-- Iconos Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Ajuste de texto móvil (Safari/iOS) -->
+  <style>
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra superior con redes -->
+  <header class="topbar"><div class="topbar-inner"><a class="btn-merch" href="pages/merch.html">MERCH</a><div class="social-icons">
+      <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+      <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/56972850858" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+    </div></div></header>
+
+  <!-- Encabezado con menú -->
+  <nav class="navbar">
+    <h1>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64" fill="currentColor" class="logo-kiwi">
+        <circle cx="32" cy="32" r="18" fill="#4F7302"/>
+        <circle cx="26" cy="28" r="4" fill="#462207"/>
+        <path d="M44 34c-2 4-6 8-10 8s-8-4-10-8" stroke="#462207" stroke-width="3" fill="none"/>
+        <line x1="46" y1="30" x2="60" y2="28" stroke="#BF2604" stroke-width="3" />
+      </svg>
+      Los Kiwis
+      </h1>
+      
+    <ul>
+      
+      <li><a href="#"><i class="fas fa-home"></i> Inicio |</a></li>
+      <li><a href="pages/libros.html"><i class="fas fa-book"></i>Libros |</a></li>
+      <li><a href="pages/galeria.html"><i class="fas fa-image"></i>Galería |</a></li>
+      <li><a href="pages/contacto.html"><i class="fas fa-envelope"></i>Contacto</a></li>
+      <!-- ✅ BOTÓN MERCH NUEVO -->
+      
+
+      
+    </ul>
+  </nav>
+
+  <!-- Slider -->
+  <section class="slider">
+    <div class="slider-bg"></div>
+    <div class="slides">
+      <div class="slide active"><img src="img/kiwi1.png" alt="Kiwi 1"></div>
+      <div class="slide"><img src="img/kiwi2.png" alt="Kiwi 2"></div>
+      <div class="slide"><img src="img/kiwi3.png" alt="Kiwi 3"></div>
+      <div class="slide"><img src="img/kiwi4.png" alt="Kiwi 4"></div>
+      <div class="slide"><img src="img/kiwi5.png" alt="Kiwi 5"></div>
+    </div>
+    <div class="slider-buttons">
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Contenido principal -->
+  <main>
+    <section class="about">
+      <h2>Sobre los Kiwis</h2>
+      <p>
+        Los Kiwis son personajes mágicos que ya cuentan con 3 libros publicados, además de nuevas historias en camino. 
+        ¡Descubre su mundo lleno de aventuras y colores!
+      </p>
+    </section>
+
+    <section class="artist">
+      <h2>Sobre el Artista</h2>
+      <p>
+        <strong>Carlos Balló</strong> es el creador de los Kiwis, un escritor y dibujante que combina fantasía, naturaleza y valores humanos en su obra. 
+        Además de los tres libros de <em>Los Kiwis</em>, ha trabajado en cómics y diversas ilustraciones que reflejan su estilo único y lleno de imaginación.
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>© 2025 Los Kiwis by Carlos Balló. Todos los derechos reservados.</p>
+      </div>
+
+      <div class="footer-center">
+        <nav class="footer-nav">
+          <a href="https://chat.whatsapp.com/DF6tZFFcwm3Fqg4wACki3y?mode=wwt" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-palette"></i> Carlos Balló Art
+          </a>
+        </nav>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-social">
+          <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+          <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/56972850858" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Slider JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const slides = document.querySelectorAll(".slide");
+      const prev = document.querySelector(".prev");
+      const next = document.querySelector(".next");
+      let index = 0;
+
+      function showSlide(i) {
+        slides[index].classList.remove("active");
+        index += i;
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        slides[index].classList.add("active");
+      }
+
+      slides[index].classList.add("active");
+      prev.addEventListener("click", () => showSlide(-1));
+      next.addEventListener("click", () => showSlide(1));
+      setInterval(() => showSlide(1), 5000);
+    });
+  </script>
+
+</body>
+</html>
