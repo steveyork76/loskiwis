@@ -1,89 +1,18 @@
-:root {
-  --tono1  : #4F7302;
-  --tono2  : #462207;
-  --tono3  : #EAE8E8;
-  --tono4  : #F2811D;
-  --tono5  : #BF2604;
-  --tono6  : #0D8FA1;
-  --tono7  : #FED246;
+/* /pages/libros.css */
+:root{
+  --tono1:#4F7302; --tono2:#462207; --tono3:#EAE8E8;
+  --tono4:#F2811D; --tono5:#BF2604; --tono6:#0D8FA1; --tono7:#FED246;
 }
 
-/* Reset y tipografía */
+/* Reset + base */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:'Comic Neue',sans-serif;
   background:linear-gradient(to bottom,var(--tono3),var(--tono1));
   color:var(--tono2);
-  font-size:1.1rem;
 }
 
-/* Topbar (copiado del index) */
-
-.social-icons a{color:white;margin:0 8px;font-size:18px;transition:.3s}
-.social-icons a:hover{color:var(--tono4)}
-
-/* Navbar (copiado del index) */
-.navbar{
-  background:var(--tono7);
-  display:flex;justify-content:space-between;align-items:center;
-  padding:15px 40px;flex-wrap:wrap;
-}
-.navbar h1{font-size:2.2rem;display:flex;align-items:center;gap:10px;color:var(--tono5)}
-.logo-kiwi{width:32px;height:32px}
-.navbar ul{list-style:none;display:flex;gap:20px;flex-wrap:wrap}
-.navbar a{text-decoration:none;color:var(--tono2);font-weight:bold;display:flex;align-items:center;gap:5px;font-size:1.15rem;transition:.3s}
-.navbar a:hover{color:var(--tono6)}
-
-/* Galería de libros (mismo sistema del index + ajustes tablet) */
-.gallery{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;padding:1rem 0}
-.gallery-item{
-  width:250px;min-height:380px;display:flex;flex-direction:column;align-items:center;
-  padding:10px;box-sizing:border-box;background:#fff;border-radius:6px;box-shadow:0 1px 6px rgba(0,0,0,0.07);
-}
-.gallery-imgbox{
-  width:100%;height:250px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:10px;
-  border-radius:20px;transition:transform .3s ease, box-shadow .3s ease;
-}
-.gallery-imgbox img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit;transition:transform .4s ease}
-.gallery-item:hover .gallery-imgbox img{transform:scale(1.08)}
-.gallery-item:hover .gallery-imgbox{box-shadow:0 8px 18px rgba(0,0,0,0.25)}
-
-
-.stock-off{color:#bf0000;font-weight:700}
-
-.buy-link{
-  margin-top:auto;display:block;padding:.5rem;background-color:#25d366;color:#fff;font-weight:bold;
-  text-decoration:none;border-radius:6px;text-align:center;transition:background-color .3s ease;
-}
-.buy-link i{font-size:.95em;margin-right:8px}
-.buy-link:hover{background-color:#1ebe57}
-.buy-link.disabled{background-color:#bbb;color:#f7f7f7;cursor:not-allowed;pointer-events:none;opacity:.65;text-decoration:none}
-
-/* Footer (copiado del index) */
-footer{background:var(--tono2);color:var(--tono3);padding:20px 40px}
-footer .footer-content{
-  display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
-}
-.footer-left p{margin:0;font-size:.9rem}
-.footer-center{text-align:center}
-.footer-nav a{
-  margin:0 10px;color:var(--tono3);text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-size:1rem;transition:.3s
-}
-.footer-nav a:hover{color:var(--tono7)}
-.footer-right .footer-social a{margin:0 5px;color:var(--tono3);font-size:18px;transition:.3s}
-.footer-right .footer-social a:hover{color:var(--tono4)}
-
-/* Responsive (copiado del index) */
-@media (max-width:768px){
-  body{font-size:1rem}
-  .navbar{flex-direction:column;gap:10px}
-  .navbar h1{font-size:1.6rem}
-  .navbar a{font-size:1rem}
-  .gallery-item{width:90%;max-width:340px}
-  footer .footer-content{flex-direction:column;text-align:center;gap:10px}
-}
-
-/* Topbar con MERCH a la izquierda y redes a la derecha (igual formato) */
+/* Topbar (igual que index) */
 .topbar{background:var(--tono6);}
 .topbar .topbar-inner{
   display:flex;align-items:center;justify-content:space-between;
@@ -91,27 +20,84 @@ footer .footer-content{
 }
 .social-icons a{color:#fff;margin:0 8px;font-size:18px;transition:.3s}
 .social-icons a:hover{color:var(--tono7)}
-/* Botón MERCH consistente */
 .btn-merch{
   background:linear-gradient(180deg,#FFBE75,#F2811D);
-  color:#fff;padding:10px 18px;border-radius:14px;
-  font-weight:900;letter-spacing:.3px;text-decoration:none;
-  box-shadow:0 8px 20px rgba(242,129,29,.33),inset 0 -2px 0 rgba(0,0,0,.08);
+  color:#fff;padding:10px 18px;border-radius:14px;font-weight:900;
+  text-decoration:none;letter-spacing:.3px;
+  box-shadow:0 8px 20px rgba(242,129,29,.33), inset 0 -2px 0 rgba(0,0,0,.08);
   border:2px solid rgba(0,0,0,.06);
 }
-.btn-merch:hover{filter:saturate(1.06)}
-.btn-merch:focus-visible{outline:3px solid #FED246;outline-offset:2px}
 
-.leyenda{
-  font-size:1.08rem; /* un poquito más grande */
-  text-align:center;margin-top:10px;
-  background:rgba(255,255,255,.18); /* no blanco sólido */
-  backdrop-filter:blur(6px);
-  padding:10px 12px;border-radius:12px;width:100%;
-  color:var(--tono2);
-  box-shadow:0 1px 6px rgba(0,0,0,.12);
+/* Navbar (idéntico al index) */
+.navbar{
+  background:var(--tono7);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 40px;flex-wrap:wrap;
 }
+.navbar h1{
+  display:flex;align-items:center;gap:10px;
+  font-size:2.0rem;color:var(--tono5);
+}
+.logo-kiwi{width:32px;height:32px;display:inline-block}
+.navbar ul{list-style:none;display:flex;gap:20px;flex-wrap:wrap}
+.navbar a{
+  text-decoration:none;color:var(--tono2);font-weight:bold;
+  display:flex;align-items:center;gap:6px;font-size:1.05rem;
+}
+.navbar a:hover{color:var(--tono6)}
+.navbar a.active{filter:saturate(1.15)}
+
+/* Cards Libros (todas uniformes) */
+.section{padding:22px 16px}
+.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+
+.gallery-item{
+  width:230px;
+  display:flex;flex-direction:column;
+  background:rgba(255,255,255,.20);
+  border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,.12);
+  backdrop-filter:blur(6px);padding:12px;
+}
+.gallery-imgbox{
+  width:100%;aspect-ratio:3/4;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;border-radius:12px;background:rgba(255,255,255,.50);
+}
+.gallery-imgbox img{
+  width:100% !important;height:100% !important;object-fit:contain !important;display:block;
+}
+.gallery-body{display:flex;flex-direction:column;gap:10px;flex-grow:1;padding-top:10px}
+.gallery-title{text-align:center;font-weight:700;min-height:48px}
+
+/* Meta arriba del botón */
+.meta{display:flex;flex-direction:column;gap:4px;align-items:center}
+.meta .price{font-weight:700}
 .stock-off{color:#bf0000;font-weight:700}
 
-.gallery-body .meta{font-size:1.05rem}
-.gallery-body .price{font-weight:700}
+/* Botón Comprar (idéntico al de Libros/Merch) */
+.buy-link{
+  background:#25D366;color:#fff;text-decoration:none;
+  padding:12px;border-radius:14px;font-weight:900;text-align:center;display:block;font-size:1.05rem;
+  box-shadow:0 8px 20px rgba(37,211,102,.33),inset 0 -2px 0 rgba(0,0,0,.08);border:2px solid rgba(0,0,0,.05);
+}
+.buy-link i{font-size:1.05rem;margin-right:8px}
+.buy-link:hover{filter:saturate(1.06) brightness(1.06)}
+.buy-link.disabled{background:#999;pointer-events:none;filter:grayscale(1);opacity:.6}
+
+/* Footer (igual que index) */
+footer{background:var(--tono2);color:var(--tono3);padding:20px 40px}
+footer .footer-content{display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-left p{margin:0}
+.footer-center{text-align:center}
+.footer-nav a{margin:0 10px;color:var(--tono3);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.footer-nav a:hover{color:var(--tono7)}
+.footer-social a{margin:0 6px;color:var(--tono3);font-size:18px}
+.footer-social a:hover{color:var(--tono4)}
+
+/* Responsive */
+@media (max-width:768px){
+  .navbar{flex-direction:column;gap:10px;padding:12px 16px}
+  .navbar h1{font-size:1.6rem}
+  .navbar a{font-size:1rem}
+  .gallery-item{width:90%;max-width:340px}
+}

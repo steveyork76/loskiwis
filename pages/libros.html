@@ -1,68 +1,72 @@
+<!-- /pages/libros.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🐦 Los Kiwis by Carlos Balló - Libros</title>
+  <title>🐦 Los Kiwis - Libros</title>
   <meta name="description" content="Libros de Los Kiwis para comprar vía WhatsApp." />
-
-  <!-- Fuentes e íconos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- Estilos solo de esta página -->
   <link rel="stylesheet" href="libros.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+<body class="page-libros">
 
-  <!-- Barra superior con redes (MISMO MARCADO QUE INDEX) -->
-  <header class="topbar"><div class="topbar-inner"><a class="btn-merch" href="merch.html">MERCH</a><div class="social-icons">
-      <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-      <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-      <a href="https://wa.me/56972850858" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-    </div></div></header>
+  <!-- Topbar (mismo markup que index) -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="btn-merch" href="merch.html">MERCH</a>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+        <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/56972850858" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </header>
 
-  <!-- Encabezado con menú (MISMO MARCADO QUE INDEX) -->
+  <!-- Navbar (mismo markup que index, con logo kiwi) -->
   <nav class="navbar">
     <h1>
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64" fill="currentColor" class="logo-kiwi">
+      <!-- Si en tu index usas una imagen, descomenta y apunta a tu archivo:
+      <img src="../img/logo-kiwi.svg" alt="Los Kiwis" class="logo-kiwi" />
+      -->
+      <!-- Inline SVG logo (compatible con el estilo del index) -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="logo-kiwi" aria-hidden="true">
         <circle cx="32" cy="32" r="18" fill="#4F7302"/>
         <circle cx="26" cy="28" r="4" fill="#462207"/>
         <path d="M44 34c-2 4-6 8-10 8s-8-4-10-8" stroke="#462207" stroke-width="3" fill="none"/>
         <line x1="46" y1="30" x2="60" y2="28" stroke="#BF2604" stroke-width="3" />
       </svg>
       Los Kiwis
-      </h1>
-      
+    </h1>
     <ul>
       <li><a href="../index.html"><i class="fas fa-home"></i> Inicio |</a></li>
-      <li><a class="active" href="libros.html"><i class="fas fa-book"></i>Libros |</a></li>
-      <li><a href="galeria.html"><i class="fas fa-image"></i>Galería |</a></li>
-      <li><a href="contacto.html"><i class="fas fa-envelope"></i>Contacto</a></li>
+      <li><a class="active" href="libros.html"><i class="fas fa-book"></i> Libros |</a></li>
+      <li><a href="galeria.html"><i class="fas fa-image"></i> Galería |</a></li>
+      <li><a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
     </ul>
   </nav>
 
   <main>
-    <section class="section page">
-      <div class="gallery">
-        
+    <section class="section">
+      <div class="cards">
+
         <!-- Libro 1 -->
         <article class="gallery-item">
           <div class="gallery-imgbox">
             <img src="../img/libros/libro1.png" alt="Los Kiwis – Libro 1" />
           </div>
-          <div class="leyenda">
-            <div><strong>Los Kiwis – Libro 1</strong></div>
-            <div>Precio: $12.000 CLP</div>
-            <div>Stock: Disponible</div>
+          <div class="gallery-body">
+            <h3 class="gallery-title">Los Kiwis – Libro 1</h3>
+            <div class="meta">
+              <span class="price">Precio: $12.000 CLP</span>
+              <span class="stock">Stock: Disponible</span>
+            </div>
+            <a class="buy-link" target="_blank" rel="noopener"
+               href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Los%20Kiwis%20%E2%80%93%20Libro%201">
+              <i class="fab fa-whatsapp"></i> Comprar
+            </a>
           </div>
-          <a class="buy-link"
-             href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Los%20Kiwis%20%E2%80%93%20Libro%201"
-             target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Comprar
-          </a>
         </article>
 
         <!-- Libro 2 -->
@@ -70,31 +74,34 @@
           <div class="gallery-imgbox">
             <img src="../img/libros/libro2.png" alt="Los Kiwis – Libro 2" />
           </div>
-          <div class="leyenda">
-            <div><strong>Los Kiwis – Libro 2</strong></div>
-            <div>Precio: $12.000 CLP</div>
-            <div>Stock: Disponible</div>
+          <div class="gallery-body">
+            <h3 class="gallery-title">Los Kiwis – Libro 2</h3>
+            <div class="meta">
+              <span class="price">Precio: $12.000 CLP</span>
+              <span class="stock">Stock: Disponible</span>
+            </div>
+            <a class="buy-link" target="_blank" rel="noopener"
+               href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Los%20Kiwis%20%E2%80%93%20Libro%202">
+              <i class="fab fa-whatsapp"></i> Comprar
+            </a>
           </div>
-          <a class="buy-link"
-             href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Los%20Kiwis%20%E2%80%93%20Libro%202"
-             target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Comprar
-          </a>
         </article>
 
-        <!-- Libro 3 (SIN STOCK) -->
+        <!-- Libro 3 SIN STOCK -->
         <article class="gallery-item">
           <div class="gallery-imgbox">
             <img src="../img/libros/libro3.png" alt="Los Kiwis – Libro 3" />
           </div>
-          <div class="leyenda">
-            <div><strong>Los Kiwis – Libro 3</strong></div>
-            <div>Precio: $12.000 CLP</div>
-            <div class="stock-off">Stock: No Disponible</div>
+          <div class="gallery-body">
+            <h3 class="gallery-title">Los Kiwis – Libro 3</h3>
+            <div class="meta">
+              <span class="price">Precio: $12.000 CLP</span>
+              <span class="stock stock-off">Stock: No Disponible</span>
+            </div>
+            <a class="buy-link disabled" href="#" aria-disabled="true">
+              <i class="fab fa-whatsapp"></i> Comprar
+            </a>
           </div>
-          <a class="buy-link disabled" href="#" aria-disabled="true">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Comprar
-          </a>
         </article>
 
         <!-- Clodomiro -->
@@ -102,16 +109,17 @@
           <div class="gallery-imgbox">
             <img src="../img/libros/clodomiro_book.png" alt="Clodomiro" />
           </div>
-          <div class="leyenda">
-            <div><strong>Clodomiro</strong></div>
-            <div>Precio: $10.000 CLP</div>
-            <div>Stock: Disponible</div>
+          <div class="gallery-body">
+            <h3 class="gallery-title">Clodomiro</h3>
+            <div class="meta">
+              <span class="price">Precio: $10.000 CLP</span>
+              <span class="stock">Stock: Disponible</span>
+            </div>
+            <a class="buy-link" target="_blank" rel="noopener"
+               href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Clodomiro">
+              <i class="fab fa-whatsapp"></i> Comprar
+            </a>
           </div>
-          <a class="buy-link"
-             href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Clodomiro"
-             target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Comprar
-          </a>
         </article>
 
         <!-- Clodomiro 2 -->
@@ -119,16 +127,17 @@
           <div class="gallery-imgbox">
             <img src="../img/libros/clodomiro2_book.png" alt="Clodomiro 2" />
           </div>
-          <div class="leyenda">
-            <div><strong>Clodomiro 2</strong></div>
-            <div>Precio: $10.000 CLP</div>
-            <div>Stock: Disponible</div>
+          <div class="gallery-body">
+            <h3 class="gallery-title">Clodomiro 2</h3>
+            <div class="meta">
+              <span class="price">Precio: $10.000 CLP</span>
+              <span class="stock">Stock: Disponible</span>
+            </div>
+            <a class="buy-link" target="_blank" rel="noopener"
+               href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Clodomiro%202">
+              <i class="fab fa-whatsapp"></i> Comprar
+            </a>
           </div>
-          <a class="buy-link"
-             href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Clodomiro%202"
-             target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Comprar
-          </a>
         </article>
 
         <!-- Chupacabras -->
@@ -136,16 +145,17 @@
           <div class="gallery-imgbox">
             <img src="../img/libros/chupacabras.png" alt="Chupacabras" />
           </div>
-          <div class="leyenda">
-            <div><strong>Chupacabras</strong></div>
-            <div>Precio: $10.000 CLP</div>
-            <div>Stock: Disponible</div>
+          <div class="gallery-body">
+            <h3 class="gallery-title">Chupacabras</h3>
+            <div class="meta">
+              <span class="price">Precio: $10.000 CLP</span>
+              <span class="stock">Stock: Disponible</span>
+            </div>
+            <a class="buy-link" target="_blank" rel="noopener"
+               href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Chupacabras">
+              <i class="fab fa-whatsapp"></i> Comprar
+            </a>
           </div>
-          <a class="buy-link"
-             href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Chupacabras"
-             target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Comprar
-          </a>
         </article>
 
         <!-- Les Kiwis -->
@@ -153,23 +163,24 @@
           <div class="gallery-imgbox">
             <img src="../img/libros/les_kiwis.png" alt="Les Kiwis" />
           </div>
-          <div class="leyenda">
-            <div><strong>Les Kiwis</strong></div>
-            <div>Precio: $10.000 CLP</div>
-            <div>Stock: Disponible</div>
+          <div class="gallery-body">
+            <h3 class="gallery-title">Les Kiwis</h3>
+            <div class="meta">
+              <span class="price">Precio: $10.000 CLP</span>
+              <span class="stock">Stock: Disponible</span>
+            </div>
+            <a class="buy-link" target="_blank" rel="noopener"
+               href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Les%20Kiwis">
+              <i class="fab fa-whatsapp"></i> Comprar
+            </a>
           </div>
-          <a class="buy-link"
-             href="https://wa.me/56972850858?text=Hola%2C%20quiero%20comprar%20Les%20Kiwis"
-             target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> Comprar
-          </a>
         </article>
 
       </div>
     </section>
   </main>
 
-  <!-- Footer (MISMO MARCADO QUE INDEX) -->
+  <!-- Footer (mismo markup que index) -->
   <footer>
     <div class="footer-content">
       <div class="footer-left">
