@@ -1,112 +1,98 @@
-// build_galeria.mjs
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+// /pages/galeria.mjs
+const grid = document.getElementById('gl-grid');
+const modal = document.getElementById('gl-modal');
+const imgFull = document.getElementById('gl-full');
 
-// === Configura estas rutas según tu estructura ===
-// Si este script está en /pages/ y tus imágenes en /img/galeria, esto es correcto:
-const IMAGES_DIR = '../img/galeria';   // carpeta de imágenes (relativa a ESTE SCRIPT)
-const GALERIA_HTML = 'galeria.html';   // archivo destino a actualizar (junto a este script)
-const OUTPUT_SNIPPET = 'galeria_items.html'; // opcional: bloque generado
+const btnClose = document.getElementById('gl-close');
+const btnPrev  = document.getElementById('gl-prev');
+const btnNext  = document.getElementById('gl-next');
+const btnFirst = document.getElementById('gl-first');
+const btnLast  = document.getElementById('gl-last');
 
-const VALID_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif']);
+const BASE = '../img/galeria/';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Reemplaza con tus archivos reales (o usa el generador de patrón más abajo)
+//const IMAGES = [
+//  { full: 'imagen01.jpg', thumb: 'imagen01_thumb.jpg', alt: 'Ilustración 1' },
+//  { full: 'imagen02.jpg', thumb: 'imagen02_thumb.jpg', alt: 'Ilustración 2' },
+//  { full: 'imagen03.jpg', thumb: 'imagen03_thumb.jpg', alt: 'Ilustración 3' },
+//  { full: 'imagen04.jpg', thumb: 'imagen04_thumb.jpg', alt: 'Ilustración 4' },
+//  { full: 'imagen05.jpg', thumb: 'imagen05_thumb.jpg', alt: 'Ilustración 5' },
+//];
 
-function naturalKey(name) {
-  // Orden "natural" considerando números en el nombre
-  return name.toLowerCase().split(/(\d+)/).map(v => (/\d+/.test(v) ? Number(v) : v));
+// Ejemplo generador por patrón:
+const IMAGES = Array.from({ length: 64 }, (_, i) => {
+  return { full: `galeria${i + 1}.jpg`, alt: `Ilustración ${i + 1}` };
+});
+
+let currentIndex = 0;
+
+function renderThumbs(list) {
+  grid.innerHTML = list.map((it, idx) => `
+    <a class="gl-thumb" href="${BASE + it.full}" data-index="${idx}">
+      <img src="${BASE + (it.thumb || it.full)}" alt="${it.alt || ''}" loading="lazy" decoding="async" />
+    </a>
+  `).join('');
 }
 
-function titleCase(s) {
-  return s.replace(/[-_]/g, ' ')
-          .replace(/\s+/g, ' ')
-          .trim()
-          .replace(/\b\w/g, m => m.toUpperCase());
+function openAt(index) {
+  if (index < 0 || index >= IMAGES.length) return;
+  currentIndex = index;
+  const it = IMAGES[currentIndex];
+  imgFull.src = BASE + it.full;
+  imgFull.alt = it.alt || '';
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
 }
 
-function buildItems() {
-  const dir = path.resolve(__dirname, IMAGES_DIR);
-  if (!fs.existsSync(dir)) throw new Error(`No existe la carpeta: ${dir}`);
-
-  const files = fs.readdirSync(dir)
-    .filter(f => {
-      const ext = path.extname(f).toLowerCase();
-      return VALID_EXTS.has(ext) && fs.lstatSync(path.join(dir, f)).isFile();
-    })
-    .sort((a, b) => {
-      const ak = naturalKey(a);
-      const bk = naturalKey(b);
-      return ak > bk ? 1 : ak < bk ? -1 : 0;
-    });
-
-  if (!files.length) throw new Error(`No se encontraron imágenes en: ${dir}`);
-
-  const items = files.map(f => {
-    const rel = path.posix.join(IMAGES_DIR, f).replace(/\\/g, '/'); // ruta relativa para HTML
-    const alt = titleCase(path.parse(f).name);
-    return [
-      '  <div class="recuadro">',
-      `    <a href="#" class="zoomImg" data-img="${rel}">`,
-      `      <img src="${rel}" alt="${alt}" loading="lazy">`,
-      '    </a>',
-      '  </div>'
-    ].join('\n');
-  });
-
-  return items.join('\n') + '\n';
+function closeModal() {
+  modal.setAttribute('aria-hidden', 'true');
+  imgFull.src = '';
+  document.body.style.overflow = '';
 }
 
-function writeSnippet(block) {
-  fs.writeFileSync(path.resolve(__dirname, OUTPUT_SNIPPET), block, 'utf-8');
-  console.log(`✅ Bloque generado en: ${OUTPUT_SNIPPET}`);
+function next()  { if (currentIndex < IMAGES.length - 1) openAt(currentIndex + 1); }
+function prev()  { if (currentIndex > 0) openAt(currentIndex - 1); }
+function first() { openAt(0); }
+function last()  { openAt(IMAGES.length - 1); }
+
+function handleThumbClick(e) {
+  const a = e.target.closest('a.gl-thumb');
+  if (!a) return;
+  e.preventDefault();
+  const idx = parseInt(a.dataset.index, 10);
+  openAt(idx);
 }
 
-function injectIntoGaleria(block) {
-  const gfile = path.resolve(__dirname, GALERIA_HTML);
-  if (!fs.existsSync(gfile)) {
-    console.log(`⚠️ No se encontró ${GALERIA_HTML}, solo se generó el snippet.`);
-    return;
+function handleKey(e) {
+  if (modal.getAttribute('aria-hidden') === 'true') return;
+  switch (e.key) {
+    case 'Escape': closeModal(); break;
+    case 'ArrowRight': next(); break;
+    case 'ArrowLeft': prev(); break;
+    case 'Home': first(); break;
+    case 'End': last(); break;
   }
-  let content = fs.readFileSync(gfile, 'utf-8');
-  const begin = '<!-- BEGIN AUTO -->';
-  const end = '<!-- END AUTO -->';
+}
 
-  if (content.includes(begin) && content.includes(end) && content.indexOf(begin) < content.indexOf(end)) {
-    // Reemplazo entre marcadores
-    const re = new RegExp(`${begin}[\\s\\S]*?${end}`, 'm');
-    const newBlock = `${begin}\n${block}${end}`;
-    content = content.replace(re, newBlock);
-  } else {
-    // Intentar insertarlo dentro de <section class="galeria">
-    const hook = '<section class="galeria"';
-    const idx = content.indexOf(hook);
-    if (idx !== -1) {
-      const gt = content.indexOf('>', idx);
-      if (gt !== -1) {
-        const auto = `\n  ${begin}\n${block}  ${end}\n`;
-        content = content.slice(0, gt + 1) + auto + content.slice(gt + 1);
-      }
-    } else {
-      // O al final antes de </body>
-      const auto = `\n<!-- Galería autogenerada -->\n${begin}\n${block}${end}\n`;
-      const bodyEnd = content.toLowerCase().lastIndexOf('</body>');
-      content = bodyEnd !== -1
-        ? content.slice(0, bodyEnd) + auto + content.slice(bodyEnd)
-        : content + auto;
-    }
+function handleBackgroundClick(e) {
+  if (e.target === modal || e.target.classList.contains('gl-stage')) {
+    closeModal();
   }
-  fs.writeFileSync(gfile, content, 'utf-8');
-  console.log(`✅ ${GALERIA_HTML} actualizado.`);
 }
 
-try {
-  const block = buildItems();
-  writeSnippet(block);
-  injectIntoGaleria(block);
-  console.log('🏁 Listo.');
-} catch (err) {
-  console.error('❌ Error:', err.message);
-  process.exit(1);
+function init() {
+  renderThumbs(IMAGES);
+  grid.addEventListener('click', handleThumbClick);
+
+  btnClose.addEventListener('click', closeModal);
+  btnPrev.addEventListener('click', prev);
+  btnNext.addEventListener('click', next);
+  btnFirst.addEventListener('click', first);
+  btnLast.addEventListener('click', last);
+
+  document.addEventListener('keydown', handleKey);
+  modal.addEventListener('click', handleBackgroundClick);
 }
+
+document.addEventListener('DOMContentLoaded', init);

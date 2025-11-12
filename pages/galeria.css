@@ -1,20 +1,29 @@
+/* =========================================
+   /pages/galeria.css
+   Estructura:
+   1) Variables + Reset + Base
+   2) Topbar (igual libros) + botón MERCH
+   3) Navbar (igual libros)
+   4) Main (espaciado de la página)
+   5) Galería (thumbnails)
+   6) Modal (visor con marca de agua + navegación)
+   7) Footer (igual libros)
+   8) Responsive
+========================================= */
+
+/* 1) Variables + Reset + Base */
 :root {
-  --tono1  : #4F7302;
-  --tono2  : #462207;
-  --tono3  : #EAE8E8;
-  --tono4  : #F2811D;
-  --tono5  : #BF2604;
-  --tono6  : #0D8FA1;
-  --tono7  : #FED246;
+  --tono1: #4F7302;
+  --tono2: #462207;
+  --tono3: #EAE8E8;
+  --tono4: #F2811D;
+  --tono5: #BF2604;
+  --tono6: #0D8FA1;
+  --tono7: #FED246;
 }
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Reset y tipografía */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 body {
   font-family: 'Comic Neue', sans-serif;
   background: linear-gradient(to bottom, var(--tono3), var(--tono1));
@@ -22,597 +31,163 @@ body {
   font-size: 1.1rem;
 }
 
-
-/* Topbar */
-.topbar {
-  background: var(--tono6);
-  padding: 10px 20px;
-  text-align: right;
+/* 2) Topbar (igual libros) + botón MERCH */
+.topbar { background: var(--tono6); }
+.topbar .topbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 10px 20px;
 }
+
 .social-icons a {
-  color: white;
-  margin: 0 8px;
-  font-size: 18px;
-  transition: 0.3s;
+  color: #fff; margin: 0 8px; font-size: 18px; transition: .3s;
 }
-.social-icons a:hover { color: var(--tono4); }
+.social-icons a:hover { color: var(--tono7); }
 
+.btn-merch {
+  background: linear-gradient(180deg, #FFBE75, #F2811D);
+  color: #fff; padding: 10px 18px; border-radius: 14px; font-weight: 900;
+  text-decoration: none; letter-spacing: .3px;
+  box-shadow: 0 8px 20px rgba(242,129,29,.33), inset 0 -2px 0 rgba(0,0,0,.08);
+  border: 2px solid rgba(0,0,0,.06);
+}
 
-/* Navbar */
+/* 3) Navbar (igual libros) */
 .navbar {
   background: var(--tono7);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 40px; flex-wrap: wrap;
 }
 .navbar h1 {
-  font-size: 2.2rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--tono5);
+  display: flex; align-items: center; gap: 10px;
+  font-size: 2.0rem; color: var(--tono5);
 }
-.logo-kiwi { width: 32px; height: 32px; }
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+.logo-kiwi { width: 32px; height: 32px; display: inline-block; }
+.navbar ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
 .navbar a {
-  text-decoration: none;
-  color: var(--tono2);
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 1.15rem;
-  transition: 0.3s;
+  text-decoration: none; color: var(--tono2); font-weight: bold;
+  display: flex; align-items: center; gap: 6px; font-size: 1.05rem;
+  transition: .3s;
 }
 .navbar a:hover { color: var(--tono6); }
+.navbar a.active { filter: saturate(1.15); }
 
+/* 4) Main */
+.page-galeria main { padding: 24px 16px 48px; }
 
-/* Slider */
-.slider {
-  width: 90%;
-  max-width: 800px;
-  height: 350px;
-  margin: 30px auto;
+/* 5) Galería (thumbnails) */
+.gl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+
+.gl-thumb {
+  position: relative; display: block;
+  background: #f0f0f0; border-radius: 12px; overflow: hidden;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.gl-thumb:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+.gl-thumb img {
+  width: 100%; height: 100%; display: block;
+  object-fit: cover; aspect-ratio: 1/1; /* miniaturas cuadradas */
+}
+
+/* 6) Modal (visor) */
+.gl-modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.9);
+  display: none; align-items: center; justify-content: center;
+  z-index: 9999; padding: 24px;
+}
+.gl-modal[aria-hidden="false"] { display: flex; }
+
+.gl-stage {
   position: relative;
-  overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  max-width: 92vw; max-height: 88vh; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  border-radius: 14px; background: #111;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 12px 40px rgba(0,0,0,.6);
 }
-.slider-bg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(120deg, var(--tono7) 0%, var(--tono1) 100%);
-  z-index: 0;
-}
-.slides {
-  position: relative;
-  width: 100%; height: 100%;
-  z-index: 1;
-}
-.slide {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: flex; justify-content: center; align-items: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-.slide.active { opacity: 1; }
-.slide img {
-  width: 100%; height: 100%;
-  object-fit: contain;
-  border-radius: 15px;
+.gl-stage img {
+  max-width: 100%; max-height: 100%; object-fit: contain; /* imagen entera y visible */
+  display: block; user-select: none; -webkit-user-drag: none;
 }
 
-
-/* Slider buttons */
-.slider-buttons {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  z-index: 2;
-}
-.slider-buttons button {
-  background: rgba(0,0,0,0.5);
-  border: none; color: white;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: 0.3s;
-}
-.slider-buttons button:hover { background: var(--tono4); }
-
-
-/* Main sections */
-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 40px 20px;
-  text-align: center;
-}
-.about, .artist {
-  padding: 30px;
-  margin: 10px auto;
-  border-radius: 15px;
-  flex: 1 1 45%;
-  max-width: 500px;
-  color: var(--tono3);
-}
-.about { background-color: var(--tono1); }
-.artist { background-color: var(--tono4); }
-.about h2, .artist h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  text-align: center;
-}
-.about p, .artist p {
-  font-size: 1rem;
-  line-height: 1.8;
-  text-align: justify;
+/* Marca de agua diagonal */
+.gl-watermark {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  pointer-events: none;
+  font-family: 'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 6vw, 3rem);
+  color: rgba(255,255,255,.18);
+  text-transform: uppercase; letter-spacing: .35rem;
+  transform: rotate(-25deg);
+  mix-blend-mode: overlay; text-align: center;
+  padding: 24px; line-height: 1.2;
 }
 
-
-/* Footer */
-footer {
-  background: var(--tono2);
-  color: var(--tono3);
-  padding: 20px 40px;
+/* Controles del visor */
+.gl-close {
+  position: absolute; top: 18px; right: 18px;
+  background: rgba(0,0,0,.6); color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px; width: 44px; height: 44px;
+  display: grid; place-items: center; cursor: pointer; font-size: 1.1rem;
 }
+.gl-close:hover { background: rgba(0,0,0,.7); }
+
+.gl-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,.5); color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  width: 44px; height: 60px; display: grid; place-items: center;
+  cursor: pointer; border-radius: 10px;
+}
+.gl-prev { left: 18px; }
+.gl-next { right: 18px; }
+.gl-first { left: 18px; top: auto; bottom: 24px; transform: none; height: 44px; }
+.gl-last  { right: 18px; top: auto; bottom: 24px; transform: none; height: 44px; }
+
+.gl-nav:hover { background: rgba(0,0,0,.6); }
+
+/* 7) Footer (igual libros) */
+footer { background: var(--tono2); color: var(--tono3); padding: 20px 40px; }
 footer .footer-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: flex; flex-direction: row; justify-content: space-between;
+  align-items: center; gap: 20px; flex-wrap: wrap;
 }
-.footer-left p { margin: 0; font-size: 0.9rem; }
+.footer-left p { margin: 0; }
 .footer-center { text-align: center; }
 .footer-nav a {
-  margin: 0 10px;
-  color: var(--tono3); text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 1rem;
-  transition: 0.3s;
+  margin: 0 10px; color: var(--tono3); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 5px;
 }
 .footer-nav a:hover { color: var(--tono7); }
-.footer-right .footer-social a {
-  margin: 0 5px;
-  color: var(--tono3);
-  font-size: 18px;
-  transition: 0.3s;
+.footer-social a { margin: 0 6px; color: var(--tono3); font-size: 18px; }
+.footer-social a:hover { color: var(--tono4); }
+
+/* 8) Responsive */
+@media (max-width: 900px) {
+  .gl-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
 }
-.footer-right .footer-social a:hover { color: var(--tono4); }
 
-
-/* Responsive */
 @media (max-width: 768px) {
-  body { font-size: 1rem; }
-  .navbar { flex-direction: column; gap: 10px; }
+  .navbar { flex-direction: column; gap: 10px; padding: 12px 16px; }
   .navbar h1 { font-size: 1.6rem; }
-  .about h2, .artist h2 { font-size: 1.2rem; }
-  .about p, .artist p { font-size: 0.95rem; }
   .navbar a { font-size: 1rem; }
-  .slider { width: 95%; height: 300px; }
-  main { flex-direction: column; padding: 20px 10px; }
-  footer .footer-content { flex-direction: column; text-align: center; gap: 10px; }
-  .footer-center, .footer-left, .footer-right { order: unset; }
-}
-
-
-/* Galería simple de recuadros */
-.galeria {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 1rem;
-}
-.recuadro {
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-.recuadro:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-}
-.recuadro img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-
-/* Galería de libros con ajuste para iPhone/Safari */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  padding: 1rem 0;
-}
-.gallery-item {
-  width: 250px;
-  min-height: 380px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-}
-
-/* ✅ Bordes redondeados para las imágenes de libros */
-.gallery-imgbox {
-  width: 100%;
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;            /* mantiene el recorte */
-  margin-bottom: 10px;
-  border-radius: 20px;         /* <<--- radio de los bordes */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.gallery-imgbox img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: inherit;      /* hereda el radio del contenedor */
-  transition: transform 0.4s ease;
-}
-
-.leyenda {
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 10px;
-  background-color: rgba(255,255,255,0.8);
-  padding: 8px;
-  border-radius: 8px;
-  width: 100%;
-  color: var(--tono2);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  font-weight: 600;
-  flex-shrink: 0;
-}
-.gallery-item a.buy-link {
-  margin-top: auto;
-  display: block;
-  padding: 0.5rem;
-  background-color: #25d366; 
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 6px;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-.gallery-item a.buy-link:hover {
-  background-color: #1ebe57;
-}
-/* Hover: zoom + sombra */
-.gallery-item:hover .gallery-imgbox img {
-  transform: scale(1.08);
-}
-
-.gallery-item:hover .gallery-imgbox {
-  box-shadow: 0px 8px 18px rgba(0,0,0,0.25);
-}
-.buy-link.disabled {
-  background-color: #bbb;
-  color: #f7f7f7;
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  text-decoration: none;
-}
-
-
-/* Estilo línea divisoria para "Otros libros" */
-.divider {
-  border: 0;
-  height: 2px;
-  background: var(--tono1);
-  margin: 40px auto 20px auto;
-  width: 80%;
-  max-width: 1200px;
-}
-
-.section-title {
-  text-align: center;
-  color: var(--tono1);
-  font-family: 'Comic Neue', cursive, sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
-  margin-bottom: 30px;
-}
-
-.otros-libros {
-  overflow: hidden; /* Clear floats */
-}
-
-.otros-libros .gallery-item {
-  width: 22%;
-  margin: 0 1.5% 40px 1.5%;
-  float: left;
-}
-
-/* Responsive para otros libros */
-@media (max-width: 768px) {
-  .otros-libros .gallery-item {
-    width: 48%;
-    margin: 0 1% 30px 1%;
-    float: left;
-  }
+  .gl-grid  { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; }
+  .gl-nav   { width: 40px; height: 52px; }
+  .gl-first, .gl-last { height: 40px; }
+  .gl-close { width: 40px; height: 40px; }
 }
 
 @media (max-width: 480px) {
-  .otros-libros .gallery-item {
-    width: 100%;
-    margin: 0 0 20px 0;
-    float: none;
-  }
+  .gl-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
 }
-h2.section-title {
-  clear: both;
-}
-/* Galería específico */
-/* Todo tu CSS que ya me diste anteriormente, completo aquí */
-
-:root {
-  --tono1  : #4F7302;
-  --tono2  : #462207;
-  --tono3  : #EAE8E8;
-  --tono4  : #F2811D;
-  --tono5  : #BF2604;
-  --tono6  : #0D8FA1;
-  --tono7  : #FED246;
-}
-
-/* Reset y tipografía */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Comic Neue', sans-serif;
-  background: linear-gradient(to bottom, var(--tono3), var(--tono1));
-  color: var(--tono2);
-  font-size: 1.1rem;
-}
-
-/* Topbar */
-.topbar {
-  background: var(--tono6);
-  padding: 10px 20px;
-  text-align: right;
-}
-.social-icons a {
-  color: white;
-  margin: 0 8px;
-  font-size: 18px;
-  transition: 0.3s;
-}
-.social-icons a:hover { color: var(--tono4); }
-
-/* Navbar */
-.navbar {
-  background: var(--tono7);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  flex-wrap: wrap;
-}
-.navbar h1 {
-  font-size: 2.2rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--tono5);
-}
-.logo-kiwi { width: 32px; height: 32px; }
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.navbar a {
-  text-decoration: none;
-  color: var(--tono2);
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 1.15rem;
-  transition: 0.3s;
-}
-.navbar a:hover { color: var(--tono6); }
-
-/* Main sections */
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-/* Galerías */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  padding: 1rem 0;
-}
-.gallery-item {
-  width: 250px;
-  min-height: 380px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-}
-.gallery-imgbox {
-  width: 100%;
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-.gallery-imgbox img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.leyenda {
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 10px;
-  background-color: rgba(255,255,255,0.8);
-  padding: 8px;
-  border-radius: 8px;
-  width: 100%;
-  color: var(--tono2);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  font-weight: 600;
-  flex-shrink: 0;
-}
-.gallery-item a.buy-link {
-  margin-top: auto;
-  display: block;
-  padding: 0.5rem;
-  background-color: #25d366;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 6px;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-.gallery-item a.buy-link:hover {
-  background-color: #1ebe57;
-}
-.buy-link.disabled {
-  background-color: #bbb;
-  color: #f7f7f7;
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  text-decoration: none;
-}
-
-/* Línea divisoria */
-.divider {
-  border: 0;
-  height: 2px;
-  background: var(--tono1);
-  margin: 40px auto 20px auto;
-  width: 80%;
-  max-width: 1200px;
-}
-
-/* Título centrado y destacado */
-.section-title-wrapper {
-  text-align: center;
-  width: 100%;
-}
-.section-title {
-  display: inline-block;
-  color: var(--tono1);
-  font-family: 'Comic Neue', cursive, sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
-  margin-bottom: 30px;
-  padding: 0 10px;
-  border-bottom: 3px solid var(--tono1);
-  line-height: 1.2;
-}
-
-/* Otros libros galería */
-.otros-libros {
-  overflow: hidden;
-}
-.otros-libros .gallery-item {
-  width: 22%;
-  margin: 0 1.5% 40px 1.5%;
-  float: left;
-}
-
-/* Responsive galería otros libros */
-@media (max-width: 768px) {
-  .otros-libros .gallery-item {
-    width: 48%;
-    margin: 0 1% 30px 1%;
-    float: left;
-  }
-}
-@media (max-width: 480px) {
-  .otros-libros .gallery-item {
-    width: 100%;
-    margin: 0 0 20px 0;
-    float: none;
-  }
-}
-
-/* === Topbar común + botón MERCH consistente === */
-.topbar .topbar-inner{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 14px;
-}
-.topbar .social-icons{ display: inline-flex; gap: 10px; }
-@media (max-width: 560px){
-  .topbar .topbar-inner{ flex-wrap: wrap; justify-content: center; }
-}
-.btn-merch{
-  background: linear-gradient(180deg, #FFBE75, #F2811D);
-  color:#fff; padding:10px 18px; border-radius:14px;
-  font-weight:900; letter-spacing:.3px; text-decoration:none;
-  box-shadow: 0 8px 20px rgba(242,129,29,.33), inset 0 -2px 0 rgba(0,0,0,.08);
-  border:2px solid rgba(0,0,0,.06);
-}
-.btn-merch:hover{ filter: saturate(1.06); }
-.btn-merch:focus-visible{ outline:3px solid #FED246; outline-offset:2px; }
