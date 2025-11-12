@@ -276,3 +276,22 @@ width:min(220px,28vw); height:auto; object-fit:contain; filter: drop-shadow(0 0 
   outline-offset: 2px;
   text-decoration: none;
 }
+.social-icons .fa-youtube,
+.footer-social .fa-youtube {
+  color: #FF0000; /* rojo YouTube */
+}
+
+.social-icons .fa-youtube:hover,
+.footer-social .fa-youtube:hover {
+  color: #ff4444;
+}
+@keyframes youtube-blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.4; transform: scale(1.1); }
+}
+
+.social-icons .fa-youtube,
+.footer-social .fa-youtube {
+  color: #FF0000;
+  animation: youtube-blink 1.5s infinite ease-in-out;
+}
