@@ -76,8 +76,8 @@
               <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
             </select>
 
-            <a class="buy-link" href="#" onclick="comprar('Polera Los Kiwis (diseño 1)', 't1')">
-              <i class="fab fa-whatsapp"></i> Comprar
+           <a class="buy-link" href="#" onclick="return comprar('Polera Los Kiwis (diseño 1)', 't1')">
+            <i class="fab fa-whatsapp"></i> Comprar
             </a>
           </div>
         </article>
@@ -99,9 +99,10 @@
               <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
             </select>
 
-            <a class="buy-link" href="#" onclick="comprar('Polera Los Kiwis (diseño 2)', 't2')">
+            <a class="buy-link" href="#" onclick="return comprar('Polera Los Kiwis (diseño 2)', 't2')">
               <i class="fab fa-whatsapp"></i> Comprar
             </a>
+
           </div>
         </article>
 
@@ -134,5 +135,32 @@
       </div>
     </div>
   </footer>
+  <script>
+  function comprar(producto, selectId) {
+    const sel = document.getElementById(selectId);
+    const talla = sel ? sel.value : '';
+
+    if (!talla) {
+      alert('Por favor, selecciona una talla antes de comprar.');
+      if (sel) sel.focus();
+      return false; // evita que el enlace navegue a "#"
+    }
+
+    // Número de WhatsApp (con código país, sin "+")
+    const phone = '56972850858';
+
+    // Mensaje para WhatsApp
+    const msg = `Hola 👋 Quiero comprar: ${producto} | Talla: ${talla} | ¿Disponible?`;
+
+    // URL a WhatsApp con el texto codificado
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+    // Abrir en pestaña nueva de forma segura
+    window.open(url, '_blank', 'noopener');
+
+    return false; // evita scroll al tope por el href="#"
+  }
+</script>
+
 </body>
 </html>
