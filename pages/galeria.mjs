@@ -21,7 +21,7 @@ const BASE = '../img/galeria/';
 //];
 
 // Ejemplo generador por patrón:
-const IMAGES = Array.from({ length: 64 }, (_, i) => {
+const IMAGES = Array.from({ length: 61 }, (_, i) => {
   return { full: `galeria${i + 1}.jpg`, alt: `Ilustración ${i + 1}` };
 });
 
