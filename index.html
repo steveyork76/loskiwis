@@ -29,6 +29,9 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="btn-merch" href="pages/merch.html">MERCH</a>
+      <button class="btn-video" type="button" aria-label="Ver videos de Los Kiwis">
+        <i class="fas fa-play"></i><span class="btn-video-text">Videos</span>
+      </button>
       <div class="social-icons">
         <a href="https://www.youtube.com/@carlosballodibujante" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
         <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
@@ -121,6 +124,23 @@
     </div>
   </footer>
 
+  <!-- Popup de video -->
+  <div id="video-overlay" class="video-overlay" aria-hidden="true">
+    <div class="video-modal" role="dialog" aria-modal="true" aria-label="Videos de Los Kiwis">
+      <button class="video-close" type="button" aria-label="Cerrar video">&times;</button>
+      
+      <video id="kiwi-video" class="video-player" controls preload="metadata">
+        Tu navegador no soporta el elemento de video.
+      </video>
+
+      <div class="video-controls-custom">
+        <button id="video-prev"  type="button" class="video-nav-btn" aria-label="Video anterior">⏮ Anterior</button>
+        <button id="video-restart" type="button" class="video-nav-btn" aria-label="Reiniciar video">⏺ Inicio</button>
+        <button id="video-next"  type="button" class="video-nav-btn" aria-label="Video siguiente">⏭ Siguiente</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Slider JS -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -135,9 +155,108 @@
         slides[index].classList.add("active");
       }
 
-      prev.addEventListener("click", () => showSlide(-1));
-      next.addEventListener("click", () => showSlide(1));
-      setInterval(() => showSlide(1), 5000);
+      if (prev && next && slides.length > 0) {
+        prev.addEventListener("click", () => showSlide(-1));
+        next.addEventListener("click", () => showSlide(1));
+        setInterval(() => showSlide(1), 5000);
+      }
+
+      // === Playlist de videos ===
+      // Agrega aquí tus videos MP4 (el nombre del archivo da lo mismo, sólo importa la ruta).
+      // Ejemplos:
+      //   videos/kiwis_trailer.mp4
+      //   videos/kiwis_navidad.mp4
+      //   videos/kiwis_show_colegio.mp4
+      const videoFiles = [
+        "videos/kiwis_trailer.mp4",
+        "videos/kiwis_trailer1.mp4",
+        "videos/kiwis_trailer2.mp4",
+        "videos/kiwis_trailer3.mp4",
+        "videos/kiwis_trailer4.mp4"
+      ];
+
+      let currentVideo = 0;
+
+      const btnVideo    = document.querySelector(".btn-video");
+      const overlay     = document.getElementById("video-overlay");
+      const closeBtn    = document.querySelector(".video-close");
+      const videoEl     = document.getElementById("kiwi-video");
+      const btnPrev     = document.getElementById("video-prev");
+      const btnNext     = document.getElementById("video-next");
+      const btnRestart  = document.getElementById("video-restart");
+
+      function loadVideo(index) {
+        if (!videoEl || videoFiles.length === 0) return;
+        currentVideo = (index + videoFiles.length) % videoFiles.length;
+        videoEl.src = videoFiles[currentVideo];
+        videoEl.load();
+      }
+
+      function playCurrentFromStart() {
+        if (!videoEl) return;
+        videoEl.currentTime = 0;
+        videoEl.play().catch(() => {});
+      }
+
+      function cerrarVideo() {
+        if (!overlay) return;
+        overlay.classList.remove("is-visible");
+        if (videoEl) {
+          videoEl.pause();
+          videoEl.currentTime = 0;
+        }
+      }
+
+      if (btnVideo && overlay) {
+        btnVideo.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (videoFiles.length > 0) {
+            loadVideo(currentVideo);
+          }
+          overlay.classList.add("is-visible");
+          if (videoFiles.length > 0) {
+            playCurrentFromStart();
+          }
+        });
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", function () {
+          cerrarVideo();
+        });
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", function (e) {
+          if (e.target === overlay) {
+            cerrarVideo();
+          }
+        });
+      }
+
+      if (btnPrev) {
+        btnPrev.addEventListener("click", function () {
+          if (videoFiles.length === 0) return;
+          loadVideo(currentVideo - 1);
+          playCurrentFromStart();
+        });
+      }
+
+      if (btnNext) {
+        btnNext.addEventListener("click", function () {
+          if (videoFiles.length === 0) return;
+          loadVideo(currentVideo + 1);
+          playCurrentFromStart();
+        });
+      }
+
+      if (btnRestart) {
+        btnRestart.addEventListener("click", function () {
+          if (!videoEl) return;
+          videoEl.currentTime = 0;
+          videoEl.play().catch(() => {});
+        });
+      }
     });
   </script>
 </body>
