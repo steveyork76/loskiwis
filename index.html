@@ -2,61 +2,68 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🐦 Los Kiwis by Carlos Balló - Página Oficial</title>
 
   <!-- SEO -->
   <meta name="description" content="Los Kiwis, personajes mágicos creados por Carlos Balló. Descubre sus libros, ilustraciones y aventuras." />
 
-  <!-- Preload Google Fonts -->
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="index.css" />
-
-  <!-- Iconos Font Awesome -->
+  <!-- Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Ajuste de texto móvil (Safari/iOS) -->
-  <style>
-    html {
-      -webkit-text-size-adjust: 100%;
-    }
-  </style>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Ajuste Safari/iOS -->
+  <style>html{-webkit-text-size-adjust:100%;}</style>
 </head>
+
 <body>
 
-  <!-- Barra superior con redes -->
-  <header class="topbar"><div class="topbar-inner"><a class="btn-merch" href="pages/merch.html">MERCH</a><div class="social-icons">
-      <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-      <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-      <a href="https://wa.me/56972850858" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-    </div></div></header>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="btn-merch" href="pages/merch.html">MERCH</a>
+      <button class="btn-video" type="button" aria-label="Ver videos de Los Kiwis">
+        <i class="fas fa-play"></i><span class="btn-video-text">Videos</span>
+      </button>
+      <div class="social-icons">
+        <a href="https://www.youtube.com/@carlosballodibujante" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/56972850858" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </header>
 
-  <!-- Encabezado con menú -->
+  <!-- Navbar -->
   <nav class="navbar">
-    <h1>
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64" fill="currentColor" class="logo-kiwi">
+    <h1 class="brand">
+      <!-- Logo -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+           viewBox="0 0 64 64" fill="currentColor" class="logo-kiwi" aria-hidden="true">
         <circle cx="32" cy="32" r="18" fill="#4F7302"/>
         <circle cx="26" cy="28" r="4" fill="#462207"/>
         <path d="M44 34c-2 4-6 8-10 8s-8-4-10-8" stroke="#462207" stroke-width="3" fill="none"/>
-        <line x1="46" y1="30" x2="60" y2="28" stroke="#BF2604" stroke-width="3" />
+        <line x1="46" y1="30" x2="60" y2="28" stroke="#BF2604" stroke-width="3"/>
       </svg>
-      Los Kiwis
-      </h1>
+
+      <span class="brand-text">Los Kiwis</span>
+
+      <!-- Kiwi “asomado” por el borde inferior -->
       
+    </h1>
+
     <ul>
-      
       <li><a href="#"><i class="fas fa-home"></i> Inicio |</a></li>
       <li><a href="pages/libros.html"><i class="fas fa-book"></i>Libros |</a></li>
       <li><a href="pages/galeria.html"><i class="fas fa-image"></i>Galería |</a></li>
       <li><a href="pages/contacto.html"><i class="fas fa-envelope"></i>Contacto</a></li>
-      <!-- ✅ BOTÓN MERCH NUEVO -->
-      
-
-      
     </ul>
   </nav>
 
@@ -71,27 +78,25 @@
       <div class="slide"><img src="img/kiwi5.png" alt="Kiwi 5"></div>
     </div>
     <div class="slider-buttons">
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
+      <button class="prev" aria-label="Anterior">&#10094;</button>
+      <button class="next" aria-label="Siguiente">&#10095;</button>
     </div>
   </section>
 
-  <!-- Contenido principal -->
+  <!-- Contenido -->
   <main>
     <section class="about">
+  <picture class="kiwi-over-card">
+    <source srcset="img/kiwi_anim.webp" type="image/webp">
+    <img src="img/kiwi_anim.gif" alt="Kiwi animado" width="220" height="220" loading="lazy" decoding="async">
+  </picture>
       <h2>Sobre los Kiwis</h2>
-      <p>
-        Los Kiwis son personajes mágicos que ya cuentan con 3 libros publicados, además de nuevas historias en camino. 
-        ¡Descubre su mundo lleno de aventuras y colores!
-      </p>
+      <p>Los Kiwis son personajes mágicos que ya cuentan con 3 libros publicados, además de nuevas historias en camino. ¡Descubre su mundo lleno de aventuras y colores!</p>
     </section>
 
     <section class="artist">
       <h2>Sobre el Artista</h2>
-      <p>
-        <strong>Carlos Balló</strong> es el creador de los Kiwis, un escritor y dibujante que combina fantasía, naturaleza y valores humanos en su obra. 
-        Además de los tres libros de <em>Los Kiwis</em>, ha trabajado en cómics y diversas ilustraciones que reflejan su estilo único y lleno de imaginación.
-      </p>
+      <p><strong>Carlos Balló</strong> es el creador de los Kiwis, un escritor y dibujante que combina fantasía, naturaleza y valores humanos en su obra.</p>
     </section>
   </main>
 
@@ -101,29 +106,44 @@
       <div class="footer-left">
         <p>© 2025 Los Kiwis by Carlos Balló. Todos los derechos reservados.</p>
       </div>
-
       <div class="footer-center">
         <nav class="footer-nav">
-          <a href="https://chat.whatsapp.com/DF6tZFFcwm3Fqg4wACki3y?mode=wwt" target="_blank" rel="noopener noreferrer">
+          <a href="https://chat.whatsapp.com/DF6tZFFcwm3Fqg4wACki3y?mode=wwt" target="_blank" rel="noopener">
             <i class="fas fa-palette"></i> Carlos Balló Art
           </a>
         </nav>
       </div>
-
       <div class="footer-right">
         <div class="footer-social">
-          <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-          <a href="http://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/56972850858" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.youtube.com/@carlosballodibujante" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.facebook.com/share/1BJBjShyHW/?mibextid=wwXIfr" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/carlosballodibujante" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/56972850858" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Popup de video -->
+  <div id="video-overlay" class="video-overlay" aria-hidden="true">
+    <div class="video-modal" role="dialog" aria-modal="true" aria-label="Videos de Los Kiwis">
+      <button class="video-close" type="button" aria-label="Cerrar video">&times;</button>
+      
+      <video id="kiwi-video" class="video-player" controls preload="metadata">
+        Tu navegador no soporta el elemento de video.
+      </video>
+
+      <div class="video-controls-custom">
+        <button id="video-prev"  type="button" class="video-nav-btn" aria-label="Video anterior">⏮ Anterior</button>
+        <button id="video-restart" type="button" class="video-nav-btn" aria-label="Reiniciar video">⏺ Inicio</button>
+        <button id="video-next"  type="button" class="video-nav-btn" aria-label="Video siguiente">⏭ Siguiente</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Slider JS -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
       const slides = document.querySelectorAll(".slide");
       const prev = document.querySelector(".prev");
       const next = document.querySelector(".next");
@@ -131,18 +151,113 @@
 
       function showSlide(i) {
         slides[index].classList.remove("active");
-        index += i;
-        if (index < 0) index = slides.length - 1;
-        if (index >= slides.length) index = 0;
+        index = (index + i + slides.length) % slides.length;
         slides[index].classList.add("active");
       }
 
-      slides[index].classList.add("active");
-      prev.addEventListener("click", () => showSlide(-1));
-      next.addEventListener("click", () => showSlide(1));
-      setInterval(() => showSlide(1), 5000);
+      if (prev && next && slides.length > 0) {
+        prev.addEventListener("click", () => showSlide(-1));
+        next.addEventListener("click", () => showSlide(1));
+        setInterval(() => showSlide(1), 5000);
+      }
+
+      // === Playlist de videos ===
+      // Agrega aquí tus videos MP4 (el nombre del archivo da lo mismo, sólo importa la ruta).
+      // Ejemplos:
+      //   videos/kiwis_trailer.mp4
+      //   videos/kiwis_navidad.mp4
+      //   videos/kiwis_show_colegio.mp4
+      const videoFiles = [
+        "videos/kiwis_trailer.mp4",
+        "videos/kiwis_trailer1.mp4",
+        "videos/kiwis_trailer2.mp4",
+        "videos/kiwis_trailer3.mp4",
+        "videos/kiwis_trailer4.mp4"
+      ];
+
+      let currentVideo = 0;
+
+      const btnVideo    = document.querySelector(".btn-video");
+      const overlay     = document.getElementById("video-overlay");
+      const closeBtn    = document.querySelector(".video-close");
+      const videoEl     = document.getElementById("kiwi-video");
+      const btnPrev     = document.getElementById("video-prev");
+      const btnNext     = document.getElementById("video-next");
+      const btnRestart  = document.getElementById("video-restart");
+
+      function loadVideo(index) {
+        if (!videoEl || videoFiles.length === 0) return;
+        currentVideo = (index + videoFiles.length) % videoFiles.length;
+        videoEl.src = videoFiles[currentVideo];
+        videoEl.load();
+      }
+
+      function playCurrentFromStart() {
+        if (!videoEl) return;
+        videoEl.currentTime = 0;
+        videoEl.play().catch(() => {});
+      }
+
+      function cerrarVideo() {
+        if (!overlay) return;
+        overlay.classList.remove("is-visible");
+        if (videoEl) {
+          videoEl.pause();
+          videoEl.currentTime = 0;
+        }
+      }
+
+      if (btnVideo && overlay) {
+        btnVideo.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (videoFiles.length > 0) {
+            loadVideo(currentVideo);
+          }
+          overlay.classList.add("is-visible");
+          if (videoFiles.length > 0) {
+            playCurrentFromStart();
+          }
+        });
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", function () {
+          cerrarVideo();
+        });
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", function (e) {
+          if (e.target === overlay) {
+            cerrarVideo();
+          }
+        });
+      }
+
+      if (btnPrev) {
+        btnPrev.addEventListener("click", function () {
+          if (videoFiles.length === 0) return;
+          loadVideo(currentVideo - 1);
+          playCurrentFromStart();
+        });
+      }
+
+      if (btnNext) {
+        btnNext.addEventListener("click", function () {
+          if (videoFiles.length === 0) return;
+          loadVideo(currentVideo + 1);
+          playCurrentFromStart();
+        });
+      }
+
+      if (btnRestart) {
+        btnRestart.addEventListener("click", function () {
+          if (!videoEl) return;
+          videoEl.currentTime = 0;
+          videoEl.play().catch(() => {});
+        });
+      }
     });
   </script>
-
 </body>
 </html>
