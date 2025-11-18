@@ -427,3 +427,167 @@ width:min(220px,28vw); height:auto; object-fit:contain; filter: drop-shadow(0 0 
     max-height: none;
   }
 }
+/* ==== FIX POPUP VIDEO EN CELULAR / iOS ==== */
+
+/* Aseguramos que el overlay siempre ocupe la pantalla y centre bien el modal */
+.video-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+}
+
+.video-overlay.is-visible{
+  display: flex;
+}
+
+/* El modal no se sale del ancho de la pantalla */
+.video-modal{
+  background: #fff;
+  width: 100%;
+  max-width: 720px;
+  border-radius: 18px;
+  padding: 16px;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+
+/* El video se adapta al ancho y respeta la altura */
+.video-player{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 60vh;          /* no más del 60% del alto de la pantalla */
+  border-radius: 12px;
+  background: #000;
+  object-fit: contain;       /* que no se corte, se “contiene” */
+}
+
+/* Botón de cierre sobre el modal */
+.video-close{
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #BF2604;
+}
+
+/* Contenedor de los botones Anterior / Inicio / Siguiente */
+.video-controls-custom{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.video-nav-btn{
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: linear-gradient(135deg, #0D8FA1, #4F7302);
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,.25);
+}
+
+/* Ajustes específicos para pantallas pequeñas (celulares) */
+@media (max-width: 560px){
+  .video-overlay{
+    padding: 10px;
+    align-items: center;
+  }
+
+  .video-modal{
+    max-width: 100%;
+    padding: 10px;
+    max-height: calc(100vh - 30px);
+  }
+
+  .video-player{
+    max-height: 50vh;
+  }
+
+  .video-nav-btn{
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+/* ==== BOTÓN LLAMATIVO PARA LIBROS (CTA) ==== */
+
+.cta-libros{
+  text-align: center;
+  padding: 28px 16px 10px;
+}
+
+.cta-libros-text{
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--tono2);
+  margin-bottom: 12px;
+}
+
+.btn-libros{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(180deg, #84BF04 0%, #4F7302 100%);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.85);
+  font-weight: 900;
+  letter-spacing: .4px;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 10px rgba(132,191,4,.7),
+    0 4px 10px rgba(0,0,0,.3),
+    inset 0 -2px 0 rgba(0,0,0,.18);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.btn-libros i{
+  font-size: 1.1rem;
+}
+
+/* Efecto de “latido” suave para que llame la atención */
+.btn-libros:hover{
+  transform: translateY(-1px) scale(1.03);
+  box-shadow:
+    0 0 16px rgba(132,191,4,.9),
+    0 6px 14px rgba(0,0,0,.35);
+  filter: brightness(1.05);
+}
+
+.btn-libros:active{
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 6px rgba(0,0,0,.4);
+}
+
+/* En pantallas pequeñas, que no quede exagerado */
+@media (max-width: 480px){
+  .cta-libros-text{
+    font-size: 1.05rem;
+  }
+  .btn-libros{
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+}
